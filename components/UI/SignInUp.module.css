@@ -1,0 +1,31 @@
+.signIn {
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 1.3em;
+  width: 200px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+.signUp {
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 1.3em;
+  width: 200px;
+  padding: 20px;
+  background-color: rgb(0, 98, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  color: white;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin-top: 15px;
+}

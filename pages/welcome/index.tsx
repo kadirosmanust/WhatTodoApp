@@ -1,3 +1,4 @@
+import SignInUp from '../../components/UI/SignInUp';
 import styles from './index.module.css';
 
 const Welcome = () => {
@@ -10,8 +11,12 @@ const Welcome = () => {
         nobis fugit, quaerat eum pariatur. Enim saepe ducimus similique?
       </div>
       <div className={styles.credit}>
-        Made by <a href='https://github.com/KadoRaw'>KadoRaw</a>
+        Made by{' '}
+        <a className={styles.link} href='https://github.com/KadoRaw'>
+          KadoRaw
+        </a>
       </div>
+      <SignInUp />
     </div>
   );
 };

@@ -23,3 +23,6 @@
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
+.link {
+  border-bottom: 1px solid black;
+}

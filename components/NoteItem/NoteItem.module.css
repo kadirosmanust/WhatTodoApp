@@ -1,0 +1,13 @@
+.note {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+}
+.icon {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.1em;
+}

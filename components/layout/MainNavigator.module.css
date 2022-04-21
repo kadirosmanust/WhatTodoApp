@@ -1,0 +1,59 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+  height: 3em;
+  border-radius: 0.3px;
+  background-color: #f7f6f3;
+}
+.nav {
+  align-self: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  margin-right: 0.8em;
+}
+.nav div {
+  margin-right: 1em;
+  color: #a19f9a;
+}
+
+.logo {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #242424;
+  width: 100% !important;
+  position: absolute;
+}
+.icon {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.5em;
+}
+.logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4em;
+}
+.logout:hover {
+  background-color: #e8e7e4;
+  border-radius: 5px;
+}
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4em;
+}
+.profile:hover {
+  background-color: #e8e7e4;
+  border-radius: 5px;
+}
