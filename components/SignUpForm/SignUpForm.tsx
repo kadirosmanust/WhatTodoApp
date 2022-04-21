@@ -1,25 +1,102 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './SignUpForm.module.css';
 
 type Props = {};
+type User = { username: string; email: string; password: string };
 
 const SignUpForm = (props: Props) => {
+  const [usernameValidate, setUsernameValid] = useState(`${styles.input}`);
+  const [emailValidate, setEmailValid] = useState(`${styles.input}`);
+  const [passwordValidate, setPassValid] = useState(`${styles.input}`);
+  const [passwordAgainValidate, setPassAgainValid] = useState(
+    `${styles.input}`
+  );
+
   const username = useRef<HTMLInputElement>(null);
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
   const passwordagain = useRef<HTMLInputElement>(null);
 
-  const submitHandler = (event: React.FormEvent) => {
+  const submitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
+    let flag = false;
 
-    const todo = {
-      username: username.current?.value,
-      email: email.current?.value,
-      password: password.current?.value,
-      passwordagain: passwordagain.current?.value,
+    if (
+      username.current?.value.trim() === '' ||
+      email.current?.value.trim() === '' ||
+      password.current?.value.trim() === '' ||
+      passwordagain?.current?.value.trim() === ''
+    ) {
+      usernameBlurHandler();
+      emailBlurHandler();
+      passwordBlurHandler();
+      passAgainBlurHandler();
+      return;
+    }
+    if (
+      password.current?.value.trim() !== passwordagain?.current?.value.trim()
+    ) {
+      //TODO: Error handle
+      return;
+    }
+    if (!email.current?.value.trim().includes('@')) {
+      //TODO: Error handle
+      return;
+    }
+    const newUser: User = {
+      username: username.current?.value!,
+      email: email.current?.value!,
+      password: password.current?.value!,
     };
-    console.log(todo);
+
+    const response = await fetch('/api/register', {
+      method: 'POST',
+      body: JSON.stringify(newUser),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const data = await response.json();
+
+    console.log(data);
   };
+
+  const usernameBlurHandler = () => {
+    const usernameValidclass =
+      username.current?.value.trim() !== ''
+        ? `${styles.input} ${styles.valid}`
+        : `${styles.input} ${styles.reject}`;
+
+    setUsernameValid(usernameValidclass);
+  };
+
+  const emailBlurHandler = () => {
+    const validclass =
+      email.current?.value.trim() !== ''
+        ? `${styles.input} ${styles.valid}`
+        : `${styles.input} ${styles.reject}`;
+
+    setEmailValid(validclass);
+  };
+
+  const passwordBlurHandler = () => {
+    const validclass =
+      password.current?.value.trim() !== ''
+        ? `${styles.input} ${styles.valid}`
+        : `${styles.input} ${styles.reject}`;
+
+    setPassValid(validclass);
+  };
+  const passAgainBlurHandler = () => {
+    const validclass =
+      passwordagain?.current?.value.trim() !== ''
+        ? `${styles.input} ${styles.valid}`
+        : `${styles.input} ${styles.reject}`;
+
+    setPassAgainValid(validclass);
+  };
+
   return (
     <>
       <div className={styles.main}>
@@ -32,7 +109,8 @@ const SignUpForm = (props: Props) => {
             type='text'
             id='username'
             ref={username}
-            className={styles.input}
+            onBlur={usernameBlurHandler}
+            className={usernameValidate}
             placeholder='Username'
           />
           <label htmlFor='email' className={styles.label}>
@@ -41,8 +119,9 @@ const SignUpForm = (props: Props) => {
           <input
             id='email'
             type='text'
+            onBlur={emailBlurHandler}
             ref={email}
-            className={styles.input}
+            className={emailValidate}
             placeholder='Email'
           />
           <label htmlFor='password' className={styles.label}>
@@ -50,7 +129,8 @@ const SignUpForm = (props: Props) => {
           </label>
           <input
             id='password'
-            className={styles.input}
+            className={passwordValidate}
+            onBlur={passwordBlurHandler}
             ref={password}
             type='password'
             placeholder='Password'
@@ -60,7 +140,8 @@ const SignUpForm = (props: Props) => {
           </label>
           <input
             id='passagain'
-            className={styles.input}
+            className={passwordAgainValidate}
+            onBlur={passAgainBlurHandler}
             ref={passwordagain}
             type='password'
             placeholder='Password Again'

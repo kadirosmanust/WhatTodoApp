@@ -28,7 +28,7 @@
   margin-bottom: 0.5em;
 }
 .input {
-  border: 0px;
+  border: 2px solid transparent;
   border-bottom: 2px solid black;
   padding: 0.4em;
 }
@@ -66,4 +66,10 @@
   font-size: 0.8em;
   color: #3a3a3a;
   margin-bottom: 0.5em;
+}
+.valid {
+  border-bottom: 2px solid greenyellow;
+}
+.reject {
+  border: 2px solid red;
 }
