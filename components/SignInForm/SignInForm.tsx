@@ -1,12 +1,15 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './SignInForm.module.css';
+import Router from 'next/router';
 
 type Props = {};
 
 const SignInForm = (props: Props) => {
+  const [buttonText, setButtonText] = useState('Login');
   const username = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
   const submitHandler = async (event: React.FormEvent) => {
+    setButtonText('Wait ...');
     event.preventDefault();
     if (
       username.current?.value.trim() === '' ||
@@ -18,17 +21,20 @@ const SignInForm = (props: Props) => {
       username: username.current?.value,
       password: password.current?.value,
     };
-    const response = await fetch('/api/userAuth', {
+    const response = await fetch('/api/Auth/login', {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
         'Content-Type': 'application/json',
       },
     });
+    setButtonText('Logged in.');
 
     const data = await response.json();
 
-    console.log(data);
+    if (data.message === 'Success!') {
+      Router.push('/');
+    }
   };
 
   return (
@@ -65,7 +71,7 @@ const SignInForm = (props: Props) => {
                 />
               </svg>
             </div>
-            Sign In
+            {buttonText}
           </button>
         </form>
         <div className={styles.pnote}> Powerful note app.</div>

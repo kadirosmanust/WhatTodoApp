@@ -11,6 +11,7 @@ const SignUpForm = (props: Props) => {
   const [passwordAgainValidate, setPassAgainValid] = useState(
     `${styles.input}`
   );
+  const [buttonText, setButtonText] = useState('Register');
 
   const username = useRef<HTMLInputElement>(null);
   const email = useRef<HTMLInputElement>(null);
@@ -18,6 +19,7 @@ const SignUpForm = (props: Props) => {
   const passwordagain = useRef<HTMLInputElement>(null);
 
   const submitHandler = async (event: React.FormEvent) => {
+    setButtonText('Wait...');
     event.preventDefault();
     let flag = false;
 
@@ -31,16 +33,21 @@ const SignUpForm = (props: Props) => {
       emailBlurHandler();
       passwordBlurHandler();
       passAgainBlurHandler();
+      setButtonText('Register');
       return;
     }
     if (
       password.current?.value.trim() !== passwordagain?.current?.value.trim()
     ) {
       //TODO: Error handle
+
+      setButtonText('Register');
       return;
     }
     if (!email.current?.value.trim().includes('@')) {
       //TODO: Error handle
+
+      setButtonText('Register');
       return;
     }
     const newUser: User = {
@@ -58,6 +65,8 @@ const SignUpForm = (props: Props) => {
     });
 
     const data = await response.json();
+
+    setButtonText('Success!');
 
     console.log(data);
   };
@@ -161,7 +170,7 @@ const SignUpForm = (props: Props) => {
                 />
               </svg>
             </div>
-            Sign Up
+            {buttonText}
           </button>
         </form>
         <div className={styles.pnote}> Powerful note app.</div>

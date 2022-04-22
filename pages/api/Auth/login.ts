@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { MongoClient } from 'mongodb';
 import cyrpto from 'bcrypt';
-import { createToken } from '../../services/userAuthToken';
+import { createToken } from '../../../services/userAuthToken';
 import { serialize } from 'cookie';
 type Data = {
   name: string;
@@ -48,5 +48,13 @@ export default async function handler(
   }
 
   const token = createToken(user.username);
-  res.setHeader('Set-Cookie', serialize('token', token, { httpOnly: true }));
+  const serializer = serialize('token', token, {
+    httpOnly: true,
+    sameSite: 'strict',
+    path: '/',
+    maxAge: 60 * 60 * 24 * 7,
+  });
+
+  res.setHeader('Set-Cookie', serializer);
+  res.status(200).json({ message: 'Success!' } as any);
 }
