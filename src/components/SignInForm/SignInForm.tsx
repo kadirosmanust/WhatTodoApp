@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styles from './SignInForm.module.css';
 import Router from 'next/router';
+import { httpPost } from '../../utils/helpers/httpHelper';
 
 type Props = {};
 
@@ -21,20 +22,8 @@ const SignInForm = (props: Props) => {
       username: username.current?.value,
       password: password.current?.value,
     };
-    const response = await fetch('/api/Auth/login', {
-      method: 'POST',
-      body: JSON.stringify(user),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    await httpPost('api/Auth/login', user);
     setButtonText('Logged in.');
-
-    const data = await response.json();
-
-    if (data.message === 'Success!') {
-      Router.push('/');
-    }
   };
 
   return (

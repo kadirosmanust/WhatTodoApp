@@ -1,7 +1,7 @@
 import React from 'react';
-import Footer from '../components/layout/Footer';
-import MainNavigator from '../components/layout/MainNavigator';
-import NoteList from '../components/NoteList/NoteList';
+import Footer from '../src/components/layout/Footer';
+import MainNavigator from '../src/components/layout/MainNavigator';
+import NoteList from '../src/components/NoteList/NoteList';
 
 type Props = {};
 

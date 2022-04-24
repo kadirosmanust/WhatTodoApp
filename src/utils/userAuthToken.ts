@@ -1,0 +1,32 @@
+/* eslint-disable @next/next/no-server-import-in-page */
+import { SignJWT, jwtVerify } from 'jose';
+import { NextRequest } from 'next/server';
+
+const SECRET_KEY = 'whattodotokentry';
+
+export const createToken = async (username: string) => {
+  const token = await new SignJWT({ username })
+    .setProtectedHeader({ alg: 'HS256' })
+    .setIssuedAt()
+    .setExpirationTime('7w')
+    .sign(new TextEncoder().encode(SECRET_KEY));
+
+  return token;
+};
+
+export const checkToken = async (token: string) => {
+  if (!token) {
+    return false;
+  }
+
+  const jwtResponse = await jwtVerify(
+    token,
+    new TextEncoder().encode(SECRET_KEY),
+    {
+      maxTokenAge: '7w',
+    }
+  );
+  const isValid = jwtResponse ? true : false;
+
+  return isValid;
+};

@@ -1,4 +1,4 @@
-import SignInUp from '../../components/UI/SignInUp';
+import SignInUp from '../../src/components/UI/SignInUp';
 import styles from './index.module.css';
 
 const Welcome = () => {

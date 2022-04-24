@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
-import SignUpForm from '../components/SignUpForm/SignUpForm';
+import React, { useState, useEffect } from 'react';
+import SignUpForm from '../src/components/SignUpForm/SignUpForm';
+import { httpGet } from '../src/utils/helpers/httpHelper';
 
 type Props = {};
 
-const signup = (props: Props) => {
+const SignUp = (props: Props) => {
+  useEffect(() => {
+    try {
+      httpGet('api/Auth/checkuser');
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
   return (
     <div className='center'>
       <SignUpForm />
@@ -11,4 +19,4 @@ const signup = (props: Props) => {
   );
 };
 
-export default signup;
+export default SignUp;

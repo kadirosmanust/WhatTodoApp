@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { MongoClient } from 'mongodb';
 import cyrpto from 'bcrypt';
-import { createToken } from '../../../services/userAuthToken';
+import { createToken } from '../../../src/utils/userAuthToken';
 import { serialize } from 'cookie';
 
 type Data = {
@@ -39,9 +39,9 @@ export default async function handler(
       password: hashedPass,
     })) as any;
 
-    const token = createToken(username);
+    const token = await createToken(username);
     const serializer = serialize('token', token, {
-      httpOnly: true,
+      httpOnly: false,
       sameSite: 'strict',
       path: '/',
       maxAge: 60 * 60 * 24 * 7,

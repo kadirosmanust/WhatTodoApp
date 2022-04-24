@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { MongoClient } from 'mongodb';
 import cyrpto from 'bcrypt';
-import { createToken } from '../../../services/userAuthToken';
+import { createToken } from '../../../src/utils/userAuthToken';
 import { serialize } from 'cookie';
 type Data = {
   name: string;
@@ -35,21 +35,21 @@ export default async function handler(
   });
 
   if (!user) {
-    res.status(200).json({ username: null, password: false } as any);
+    res.status(401).json({ username: null, password: false } as any);
     return;
     //TODO: Throw error
   }
 
   const isUser = await cyrpto.compare(password, user?.password);
   if (!isUser) {
-    res.status(200).json({ username: user.username, password: isUser } as any);
+    res.status(401).json({ username: user.username, password: isUser } as any);
     //TODO: Throw error
     return;
   }
 
-  const token = createToken(user.username);
+  const token = await createToken(user.username);
   const serializer = serialize('token', token, {
-    httpOnly: true,
+    httpOnly: false,
     sameSite: 'strict',
     path: '/',
     maxAge: 60 * 60 * 24 * 7,

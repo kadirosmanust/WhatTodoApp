@@ -1,8 +1,15 @@
-import React from 'react';
-import SignInForm from '../components/SignInForm/SignInForm';
-import styles from '../styles/Signin.module.css';
+import React, { useEffect } from 'react';
+import SignInForm from '../src/components/SignInForm/SignInForm';
+import { httpGet } from '../src/utils/helpers/httpHelper';
 
-const signin = () => {
+const Signin = () => {
+  useEffect(() => {
+    try {
+      httpGet('api/Auth/checkuser');
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
   return (
     <div className='center'>
       <SignInForm />
@@ -10,4 +17,4 @@ const signin = () => {
   );
 };
 
-export default signin;
+export default Signin;
