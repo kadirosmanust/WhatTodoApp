@@ -5,13 +5,7 @@ import { httpGet } from '../src/utils/helpers/httpHelper';
 type Props = {};
 
 const SignUp = (props: Props) => {
-  useEffect(() => {
-    try {
-      httpGet('api/Auth/checkuser');
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  
   return (
     <div className='center'>
       <SignUpForm />

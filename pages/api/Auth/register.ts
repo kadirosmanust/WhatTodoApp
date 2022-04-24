@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { MongoClient } from 'mongodb';
-import cyrpto from 'bcrypt';
 import { createToken } from '../../../src/utils/userAuthToken';
 import { serialize } from 'cookie';
+import hash from '../../../src/utils/helpers/hashHelper';
 
 type Data = {
   name: string;
@@ -24,19 +24,16 @@ export default async function handler(
 
     const { username, email, password }: User = req.body;
 
-    const [client, hashedPass] = await Promise.all([
-      MongoClient.connect(
-        `mongodb+srv://kadoraw:bxKfHk84RnWfP3t@cluster0.34tyh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
-      ),
-      await cyrpto.hash(password, 12),
-    ]);
+    const client = await MongoClient.connect(
+      `mongodb+srv://kadoraw:bxKfHk84RnWfP3t@cluster0.34tyh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+    );
     const db = client.db('whattodo');
     const collection = db.collection('Users');
 
     const result = (await collection.insertOne({
       username: username,
       email: email,
-      password: hashedPass,
+      password: password,
     })) as any;
 
     const token = await createToken(username);

@@ -1,7 +1,9 @@
 import React, { useRef, useState } from 'react';
 import styles from './SignInForm.module.css';
+import cyrpto from 'bcrypt';
 import Router from 'next/router';
 import { httpPost } from '../../utils/helpers/httpHelper';
+import hash from '../../utils/helpers/hashHelper';
 
 type Props = {};
 
@@ -18,9 +20,13 @@ const SignInForm = (props: Props) => {
     ) {
       return;
     }
+
+    const hashedUserName = username.current?.value; //TODO: Hash this.
+    const hashedPassword = hash(password.current?.value);
+
     const user = {
-      username: username.current?.value,
-      password: password.current?.value,
+      username: hashedUserName,
+      password: hashedPassword,
     };
     await httpPost('api/Auth/login', user);
     setButtonText('Logged in.');

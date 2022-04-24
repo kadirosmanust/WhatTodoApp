@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styles from './SignUpForm.module.css';
+import { httpPost } from '../../utils/helpers/httpHelper';
+import hash from '../../utils/helpers/hashHelper';
 
 type Props = {};
 type User = { username: string; email: string; password: string };
@@ -50,25 +52,22 @@ const SignUpForm = (props: Props) => {
       setButtonText('Register');
       return;
     }
+
+    const hashedpass = hash(password.current?.value);
+
     const newUser: User = {
       username: username.current?.value!,
       email: email.current?.value!,
-      password: password.current?.value!,
+      password: hashedpass,
     };
 
-    const response = await fetch('/api/register', {
-      method: 'POST',
-      body: JSON.stringify(newUser),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    const data = await response.json();
+    const response = await httpPost('/api/Auth/register', newUser).catch(
+      (e) => {
+        console.log(e);
+      }
+    );
 
     setButtonText('Success!');
-
-    console.log(data);
   };
 
   const usernameBlurHandler = () => {
