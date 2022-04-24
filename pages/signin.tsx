@@ -6,9 +6,7 @@ const Signin = () => {
   useEffect(() => {
     try {
       httpGet('api/Auth/checkuser');
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }, []);
   return (
     <div className='center'>
