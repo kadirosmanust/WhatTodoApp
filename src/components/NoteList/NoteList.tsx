@@ -3,12 +3,12 @@ import NoteItem from '../NoteItem/NoteItem';
 import styles from './NoteList.module.css';
 
 type Props = {
-  data: { username: string; notes: any[] };
+  notesData: { username: string; notes: any[] };
   pending: boolean;
   error: boolean;
 };
 
-const NoteList = ({ data, pending, error }: Props) => {
+const NoteList = ({ notesData, pending, error }: Props) => {
   return (
     <div className={styles.list}>
       {!error && !pending && (

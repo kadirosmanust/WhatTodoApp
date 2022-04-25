@@ -22,7 +22,7 @@ const Home = (props: Props) => {
       {isRegistered && (
         <>
           <MainNavigator />
-          <NoteList data={null} pending={null} error={null} />
+          <NoteList notesData={null} pending={null} error={null} />
           <Footer />
         </>
       )}

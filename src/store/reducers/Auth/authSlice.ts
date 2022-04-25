@@ -18,8 +18,12 @@ export const authSlice = createSlice({
       state.isRegistered = action.payload.isRegistered;
       state.username = action.payload.username;
     },
+    logout: (state) => {
+      state.isRegistered = false;
+      state.username = '';
+    },
   },
 });
-export const register = authSlice.actions.register;
+export const { register, logout } = authSlice.actions;
 
 export default authSlice.reducer;
