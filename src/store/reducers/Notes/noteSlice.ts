@@ -2,9 +2,14 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 import { RootState } from '../../store';
 import { httpPost } from '../../../utils/helpers/httpHelper';
+type Note = {
+  title: string;
+  id: string;
+  note: string;
+};
 
 export type NotesState = {
-  data: { username: string; notes: any[] };
+  data: { username: string; notes: Note[] };
   pending: boolean;
   error: boolean;
 };
@@ -17,7 +22,7 @@ const initialState: NotesState = {
 
 export const fetchNotes: any = createAsyncThunk(
   'notes/fetchNotes',
-  async (username) => {
+  async (username: string, thunkAPI) => {
     const response = (await httpPost(
       '/api/data/notes',
       username
