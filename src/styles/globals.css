@@ -40,6 +40,7 @@ a {
   border: 1px solid transparent;
   width: 45%;
   transition: box-shadow 0.4s ease-in-out;
+  cursor: pointer;
 }
 .gohome:hover {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
@@ -65,6 +66,7 @@ a {
   color: #fff;
   width: 45%;
   transition: box-shadow 0.4s ease-in-out;
+  cursor: pointer;
 }
 .primarybtn:hover {
   box-shadow: rgba(0, 98, 255, 0.65) 0px 5px 15px;

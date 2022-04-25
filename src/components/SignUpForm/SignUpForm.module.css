@@ -51,6 +51,7 @@
   align-items: center;
   width: 150px;
   align-self: center;
+  cursor: pointer;
 }
 .button:hover {
   border: 2px solid black;
