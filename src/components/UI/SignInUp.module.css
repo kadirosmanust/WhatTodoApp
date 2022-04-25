@@ -1,5 +1,5 @@
 .signIn {
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.349);
   border-radius: 5px;
   height: 1.3em;
   width: 200px;
@@ -8,9 +8,13 @@
   justify-content: center;
   align-items: center;
   margin-right: 10px;
+  transition: box-shadow 0.4s ease-in-out;
+}
+.signIn:hover {
+  box-shadow: rgba(0, 23, 59, 0.452) 0px 4px 14px;
 }
 .signUp {
-  border: 1px solid black;
+  border: 1px solid rgb(0, 77, 201);
   border-radius: 5px;
   height: 1.3em;
   width: 200px;
@@ -21,6 +25,10 @@
   align-items: center;
   margin-left: 10px;
   color: white;
+  transition: box-shadow 0.4s ease-in-out;
+}
+.signUp:hover {
+  box-shadow: rgba(0, 98, 255, 0.75) 3px 8px 18px;
 }
 .center {
   display: flex;

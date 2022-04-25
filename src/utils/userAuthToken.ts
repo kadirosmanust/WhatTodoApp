@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-server-import-in-page */
 import { SignJWT, jwtVerify } from 'jose';
-import { NextRequest } from 'next/server';
 
 const SECRET_KEY = 'whattodotokentry';
 
@@ -16,7 +15,7 @@ export const createToken = async (username: string) => {
 
 export const checkToken = async (token: string) => {
   if (!token) {
-    return false;
+    return { isValid: false, username: '' };
   }
 
   const jwtResponse = await jwtVerify(
@@ -27,6 +26,7 @@ export const checkToken = async (token: string) => {
     }
   );
   const isValid = jwtResponse ? true : false;
+  console.log(isValid);
 
-  return isValid;
+  return { isValid, username: jwtResponse.payload.username };
 };

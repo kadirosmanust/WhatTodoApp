@@ -2,6 +2,9 @@ import React, { useRef, useState } from 'react';
 import styles from './SignUpForm.module.css';
 import { httpPost } from '../../utils/helpers/httpHelper';
 import hash from '../../utils/helpers/hashHelper';
+import Router from 'next/router';
+import store from '../../store/store';
+import { register } from '../../store/reducers/Auth/authSlice';
 
 type Props = {};
 type User = { username: string; email: string; password: string };
@@ -23,7 +26,6 @@ const SignUpForm = (props: Props) => {
   const submitHandler = async (event: React.FormEvent) => {
     setButtonText('Wait...');
     event.preventDefault();
-    let flag = false;
 
     if (
       username.current?.value.trim() === '' ||
@@ -60,14 +62,16 @@ const SignUpForm = (props: Props) => {
       email: email.current?.value!,
       password: hashedpass,
     };
-
-    const response = await httpPost('/api/Auth/register', newUser).catch(
-      (e) => {
-        console.log(e);
-      }
-    );
-
-    setButtonText('Success!');
+    try {
+      await httpPost('/api/Auth/register', newUser);
+      setButtonText('Success!');
+      store.dispatch(
+        register({ isRegistered: true, username: newUser.username })
+      );
+      Router.push('/home');
+    } catch (error) {
+      setButtonText('Try Again!');
+    }
   };
 
   const usernameBlurHandler = () => {
@@ -81,7 +85,7 @@ const SignUpForm = (props: Props) => {
 
   const emailBlurHandler = () => {
     const validclass =
-      email.current?.value.trim() !== ''
+      email.current?.value.trim() !== '' && email.current?.value.includes('@')
         ? `${styles.input} ${styles.valid}`
         : `${styles.input} ${styles.reject}`;
 

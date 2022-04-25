@@ -1,13 +1,12 @@
 import React, { useRef, useState } from 'react';
 import styles from './SignInForm.module.css';
-import cyrpto from 'bcrypt';
-import Router from 'next/router';
 import { httpPost } from '../../utils/helpers/httpHelper';
 import hash from '../../utils/helpers/hashHelper';
+import Router from 'next/router';
+import store from '../../store/store';
+import { register } from '../../store/reducers/Auth/authSlice';
 
-type Props = {};
-
-const SignInForm = (props: Props) => {
+const SignInForm = () => {
   const [buttonText, setButtonText] = useState('Login');
   const username = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
@@ -28,8 +27,16 @@ const SignInForm = (props: Props) => {
       username: hashedUserName,
       password: hashedPassword,
     };
-    await httpPost('api/Auth/login', user);
-    setButtonText('Logged in.');
+    try {
+      await httpPost('api/Auth/login', user);
+      setButtonText('Logged in.');
+      store.dispatch(
+        register({ isRegistered: true, username: hashedUserName })
+      );
+      Router.push('/home');
+    } catch (error) {
+      setButtonText('Try Again.');
+    }
   };
 
   return (

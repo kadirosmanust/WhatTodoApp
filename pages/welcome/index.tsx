@@ -1,21 +1,20 @@
 /* eslint-disable react/no-unescaped-entities */
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import Router from 'next/router';
+import { useEffect } from 'react';
 import SignInUp from '../../src/components/UI/SignInUp';
-import { httpGet } from '../../src/utils/helpers/httpHelper';
+import { useAppSelector } from '../../src/store/store';
 import styles from './index.module.css';
 
 const Welcome = () => {
-  const [isLogged, setLogged] = useState();
+  const { isRegistered, username } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    (async () => {
-      const body = (await httpGet('/api/Auth/checkuserindex')) as any;
-      const response = body.data.isLogged;
-
-      setLogged(response);
-    })();
-  }, []);
+    if (!isRegistered) {
+      Router.push('/welcome');
+      return;
+    }
+  }, [isRegistered]);
   return (
     <div className={styles.center}>
       <div className={styles.black}>WhatTodo</div>
@@ -30,8 +29,8 @@ const Welcome = () => {
           KadoRaw
         </a>
       </div>
-      {!isLogged && <SignInUp />}
-      {isLogged && (
+      {!isRegistered && <SignInUp />}
+      {isRegistered && (
         <Link href='/home'>
           <a className={styles.btn}> Let's Start</a>
         </Link>

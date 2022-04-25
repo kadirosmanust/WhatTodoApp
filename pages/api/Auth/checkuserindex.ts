@@ -15,10 +15,10 @@ export default async function handler(
   const cookie = req.headers.authorization;
   const token = cookie ? cookie.split(' ')[1] : '';
 
-  const isUser = await checkToken(token);
+  const { isValid: isUser, username } = await checkToken(token);
   if (isUser) {
-    res.status(200).json({ isLogged: isUser } as any);
+    res.status(200).json({ isLogged: isUser, username } as any);
   }
 
-  res.status(200).json({ isLogged: isUser } as any);
+  res.status(200).json({ isLogged: isUser, username } as any);
 }

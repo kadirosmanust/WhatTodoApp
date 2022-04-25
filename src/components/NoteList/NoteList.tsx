@@ -2,25 +2,31 @@ import React from 'react';
 import NoteItem from '../NoteItem/NoteItem';
 import styles from './NoteList.module.css';
 
-type Props = {};
+type Props = {
+  data: { username: string; notes: any[] };
+  pending: boolean;
+  error: boolean;
+};
 
-const NoteList = (props: Props) => {
+const NoteList = ({ data, pending, error }: Props) => {
   return (
     <div className={styles.list}>
-      <ul className={styles.ul}>
-        <li>
-          <NoteItem />
-        </li>
-        <li>
-          <NoteItem />
-        </li>
-        <li>
-          <NoteItem />
-        </li>
-        <li>
-          <NoteItem />
-        </li>
-      </ul>
+      {!error && !pending && (
+        <ul className={styles.ul}>
+          <li>
+            <NoteItem />
+          </li>
+          <li>
+            <NoteItem />
+          </li>
+          <li>
+            <NoteItem />
+          </li>
+          <li>
+            <NoteItem />
+          </li>
+        </ul>
+      )}
     </div>
   );
 };
