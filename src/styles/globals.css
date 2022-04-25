@@ -21,5 +21,62 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100vh;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.6em;
+  width: 350px;
+  height: 50px;
+}
+.gohome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  border: 1px solid transparent;
+  width: 45%;
+  transition: box-shadow 0.4s ease-in-out;
+}
+.gohome:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+}
+.gohome svg {
+  width: 1.3rem;
+  margin: 0.3rem;
+  height: 1.3rem;
+  font-weight: 400;
+}
+.gohome p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+}
+.primarybtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  border: 1px solid rgb(0, 98, 255);
+  background-color: rgb(0, 98, 255);
+  color: #fff;
+  width: 45%;
+  transition: box-shadow 0.4s ease-in-out;
+}
+.primarybtn:hover {
+  box-shadow: rgba(0, 98, 255, 0.65) 0px 5px 15px;
+}
+.primarybtn svg {
+  width: 1.3rem;
+  margin-right: 0.5rem;
+  height: 1.3rem;
+  font-weight: 400;
+}
+.primarybtn p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 1em;
 }

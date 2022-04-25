@@ -39,7 +39,6 @@ export default async function handler(
   }
 
   const isUser = user.password === password;
-  console.log(isUser);
 
   if (!isUser) {
     res.status(401).json({ username: user.username, password: isUser } as any);
