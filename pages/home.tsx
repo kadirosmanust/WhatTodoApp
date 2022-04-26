@@ -3,26 +3,30 @@ import React, { useEffect } from 'react';
 import Footer from '../src/components/layout/Footer';
 import MainNavigator from '../src/components/layout/MainNavigator';
 import NoteList from '../src/components/NoteList/NoteList';
-import { useAppSelector } from '../src/store/store';
+import { getNotes, fetchNotes } from '../src/store/reducers/Notes/noteSlice';
+import { useAppDispatch, useAppSelector } from '../src/store/store';
 
 type Props = {};
 
-const Home = (props: Props) => {
+const Home = () => {
   const { isRegistered, username } = useAppSelector((state) => state.auth);
-
+  const dispatch = useAppDispatch();
+  const { data, error, pending } = useAppSelector(getNotes);
   useEffect(() => {
     if (!isRegistered) {
       Router.push('/welcome');
       return;
     }
-  }, [isRegistered]);
+
+    dispatch(fetchNotes(username));
+  }, [isRegistered, dispatch, username]);
 
   return (
     <>
       {isRegistered && (
         <>
           <MainNavigator />
-          <NoteList notesData={null} pending={null} error={null} />
+          <NoteList notesData={data} pending={pending} error={error} />
           <Footer />
         </>
       )}

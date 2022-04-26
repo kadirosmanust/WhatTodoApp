@@ -7,7 +7,7 @@ import hash from '../../../src/utils/helpers/hashHelper';
 type Data = {
   name: string;
 };
-type User = {
+type LoginData = {
   username: string;
   password: string;
 };
@@ -20,7 +20,7 @@ export default async function handler(
     return;
   }
 
-  const { username, password }: User = req.body;
+  const { username, password }: LoginData = req.body;
 
   const client = await MongoClient.connect(
     `mongodb+srv://kadoraw:bxKfHk84RnWfP3t@cluster0.34tyh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`

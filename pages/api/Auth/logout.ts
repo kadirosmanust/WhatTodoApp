@@ -3,10 +3,6 @@ import { serialize } from 'cookie';
 type Data = {
   name: string;
 };
-type User = {
-  username: string;
-  password: string;
-};
 
 export default async function handler(
   req: NextApiRequest,
