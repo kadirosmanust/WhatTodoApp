@@ -1,0 +1,5 @@
+.notes {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+}

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-server-import-in-page */
 import { SignJWT, jwtVerify } from 'jose';
 
-const SECRET_KEY = 'whattodotokentry';
+const SECRET_KEY = process.env.SECRET_KEY;
 
 export const createToken = async (username: string) => {
   const token = await new SignJWT({ username })
