@@ -2,15 +2,11 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { MongoClient } from 'mongodb';
 import { createToken } from '../../../src/utils/userAuthToken';
 import { serialize } from 'cookie';
-import hash from '../../../src/utils/helpers/hashHelper';
+import type { User, Note } from '../../../src/types/types';
+import { v4 } from 'uuid';
 
 type Data = {
   name: string;
-};
-type User = {
-  username: string;
-  email: string;
-  password: string;
 };
 
 export default async function handler(
@@ -29,11 +25,15 @@ export default async function handler(
     );
     const db = client.db('whattodo');
     const collection = db.collection('Users');
+    const notes: Note[] = [
+      { title: `Hello ${username}`, note: 'Have fun.', id: v4() },
+    ];
 
     const result = (await collection.insertOne({
       username: username,
       email: email,
       password: password,
+      notes: notes,
     })) as any;
 
     const token = await createToken(username);

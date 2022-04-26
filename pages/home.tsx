@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../src/store/store';
 
 type Props = {};
 
-const Home = (props: Props) => {
+const Home = () => {
   const { isRegistered, username } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const { data, error, pending } = useAppSelector(getNotes);

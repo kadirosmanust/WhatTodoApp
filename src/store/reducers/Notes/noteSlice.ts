@@ -1,12 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { RootState } from '../../store';
 import { httpPost } from '../../../utils/helpers/httpHelper';
-type Note = {
-  title: string;
-  id: string;
-  note: string;
-};
+import type { Note } from '../../../types/types';
 
 export type NotesState = {
   data: { username: string; notes: Note[] };
@@ -32,6 +28,19 @@ export const fetchNotes: any = createAsyncThunk(
   }
 );
 
+export const createNote: any = createAsyncThunk(
+  'notes/createNote',
+  async (note: Note, thunkAPI) => {
+    const response = (await axios.post(
+      'http://localhost:3000/api/utils/new-todo',
+      note
+    )) as AxiosResponse;
+    console.log(response);
+
+    return note;
+  }
+);
+
 export const notesSlice = createSlice({
   name: 'notes',
   initialState,
@@ -45,6 +54,17 @@ export const notesSlice = createSlice({
       state.data = payload;
     },
     [fetchNotes.rejected](state) {
+      state.pending = false;
+      state.error = true;
+    },
+    [createNote.pending](state) {
+      state.pending = true;
+    },
+    [createNote.fulfilled](state, { payload }) {
+      state.pending = false;
+      state.data.notes = [...state.data.notes, payload];
+    },
+    [createNote.rejected](state) {
       state.pending = false;
       state.error = true;
     },
