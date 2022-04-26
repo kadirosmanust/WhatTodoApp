@@ -1,4 +1,3 @@
-import axios from 'axios';
 import Router from 'next/router';
 import React, { useEffect } from 'react';
 import { useAppSelector } from '../../src/store/store';

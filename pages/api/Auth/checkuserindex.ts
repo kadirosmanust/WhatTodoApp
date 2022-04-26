@@ -14,6 +14,7 @@ export default async function handler(
   const { isValid: isUser, username } = await checkToken(token);
   if (isUser) {
     res.status(200).json({ isLogged: isUser, username } as any);
+    return;
   }
 
   res.status(200).json({ isLogged: isUser, username } as any);

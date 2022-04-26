@@ -28,6 +28,7 @@ export default async function handler(
       username,
       notes: user.notes,
     } as any);
+    return;
   }
   res.status(401);
 }

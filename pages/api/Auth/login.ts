@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { MongoClient } from 'mongodb';
 import { createToken } from '../../../src/utils/userAuthToken';
 import { serialize } from 'cookie';
-import hash from '../../../src/utils/helpers/hashHelper';
 
 type Data = {
   name: string;
