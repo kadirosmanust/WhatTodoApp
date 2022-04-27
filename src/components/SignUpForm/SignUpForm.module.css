@@ -74,3 +74,23 @@
 .reject {
   border: 2px solid red;
 }
+@media screen and (max-width: 500px) {
+  .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 300px;
+  }
+  .form {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    width: 250px;
+  }
+}

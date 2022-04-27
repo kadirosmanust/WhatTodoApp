@@ -1,7 +1,7 @@
 .header {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
   height: 3em;
@@ -9,11 +9,11 @@
   background-color: #f7f6f3;
 }
 .nav {
-  align-self: right;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   z-index: 10;
+  width: 100%;
   margin-right: 0.8em;
 }
 .nav div {
@@ -58,4 +58,28 @@
 .profile:hover {
   background-color: #e8e7e4;
   border-radius: 5px;
+}
+@media screen and (max-width: 600px) {
+  .header p {
+    display: none;
+  }
+  .icon {
+    margin: 0;
+  }
+  .logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+    height: 2rem;
+  }
 }

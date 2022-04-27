@@ -3,3 +3,28 @@
   justify-content: flex-start;
   align-content: center;
 }
+.mobilemenu {
+  margin-left: 1rem;
+  margin-top: 0.6rem;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  cursor: pointer;
+  z-index: 60;
+}
+.mobilemenu svg {
+  width: 1.8em;
+  height: 1.8em;
+  margin-right: 0.5em;
+}
+@media screen and (max-width: 600px) {
+  .nav {
+    justify-content: space-between;
+  }
+  .mobilemenu {
+    display: flex;
+  }
+}
