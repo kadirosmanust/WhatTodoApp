@@ -13,11 +13,14 @@ const MainNavigator = () => {
     store.dispatch(logout());
     Router.push('/');
   };
+  const profileClickHandler = () => {
+    Router.push('/profile');
+  };
 
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
-        <div className={styles.profile}>
+        <div className={styles.profile} onClick={profileClickHandler}>
           <UserIcon className={styles.icon} />
           Profile
         </div>

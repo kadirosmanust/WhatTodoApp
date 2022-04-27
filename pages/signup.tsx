@@ -3,9 +3,7 @@ import React, { useEffect } from 'react';
 import SignUpForm from '../src/components/SignUpForm/SignUpForm';
 import { useAppSelector } from '../src/store/store';
 
-type Props = {};
-
-const SignUp = (props: Props) => {
+const SignUp = () => {
   const { isRegistered } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
