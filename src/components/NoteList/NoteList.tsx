@@ -9,12 +9,26 @@ type Props = {
   pending: boolean;
   error: boolean;
   detailHandler: (content: string, title: string) => void;
+  createNoteHandler: () => void;
 };
 
-const NoteList = ({ notesData, pending, error, detailHandler }: Props) => {
+const NoteList = ({
+  notesData,
+  pending,
+  error,
+  detailHandler,
+  createNoteHandler,
+}: Props) => {
   return (
     <div className={styles.list}>
-      <p>Hello {notesData.username}</p>
+      {!pending && (
+        <div className={styles.create} onClick={createNoteHandler}>
+          Create Note
+        </div>
+      )}
+      {pending && <p>Loading...</p>}
+      {!pending && <p>Hello {notesData.username}</p>}
+
       {!error && !pending && (
         <ul className={styles.ul}>
           {notesData.notes &&

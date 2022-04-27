@@ -38,3 +38,23 @@
   background-color: #e8e7e4;
   color: #1b1b1b;
 }
+.create {
+  background-color: rgba(255, 38, 67, 0.753);
+  padding: 0.3rem 1rem;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.darkmodal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #1b1b1b46;
+  height: 100%;
+  width: 100%;
+  z-index: 99999;
+  overflow: auto;
+}

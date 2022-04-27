@@ -6,7 +6,9 @@ import { useAppSelector } from '../../store/store';
 import { getNotes } from '../../store/reducers/Notes/noteSlice';
 import NoteList from '../NoteList/NoteList';
 
-const Notes = () => {
+type Props = { createNoteHandler: () => void };
+
+const Notes = ({ createNoteHandler }: Props) => {
   const [details, setDetails] = useState('');
   const [title, setTitle] = useState('');
   const { data, error, pending } = useAppSelector(getNotes);
@@ -19,6 +21,7 @@ const Notes = () => {
   return (
     <div className={styles.notes}>
       <NoteList
+        createNoteHandler={createNoteHandler}
         notesData={data}
         error={error}
         pending={pending}
