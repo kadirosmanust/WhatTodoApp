@@ -1,16 +1,16 @@
 import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
 import { createNote } from '../../store/reducers/Notes/noteSlice';
 import styles from './NewNote.module.css';
 import type { Note } from '../../types/types';
 import { v4 } from 'uuid';
+import { useAppDispatch } from '../../store/store';
 
 type Props = { exitHandler: () => void };
 
 const NewNote = ({ exitHandler }: Props) => {
   const title = useRef<HTMLInputElement>(null);
   const content = useRef<HTMLInputElement>(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
