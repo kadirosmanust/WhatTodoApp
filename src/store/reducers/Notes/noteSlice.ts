@@ -32,10 +32,21 @@ export const createNote: any = createAsyncThunk(
   'notes/createNote',
   async (note: Note, thunkAPI) => {
     const response = (await axios.post(
-      'http://localhost:3000/api/utils/new-todo',
+      'http://localhost:3000/api/utils/new-note',
       note
     )) as AxiosResponse;
-    console.log(response);
+
+    return note;
+  }
+);
+
+export const deleteNote: any = createAsyncThunk(
+  'notes/deleteNote',
+  async (note: Note, thunkAPI) => {
+    const response = (await axios.post(
+      'http://localhost:3000/api/utils/delete-note',
+      note
+    )) as AxiosResponse;
 
     return note;
   }
@@ -65,6 +76,20 @@ export const notesSlice = createSlice({
       state.data.notes = [...state.data.notes, payload];
     },
     [createNote.rejected](state) {
+      state.pending = false;
+      state.error = true;
+    },
+    [deleteNote.pending](state) {
+      state.pending = true;
+    },
+    [deleteNote.fulfilled](state, { payload }) {
+      state.pending = false;
+      const notes = state.data.notes.filter(
+        (note) => note.id !== payload.id
+      ) as any;
+      state.data.notes = [...notes];
+    },
+    [deleteNote.rejected](state) {
       state.pending = false;
       state.error = true;
     },

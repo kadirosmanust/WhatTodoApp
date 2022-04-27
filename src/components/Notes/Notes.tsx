@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Notes.module.css';
 import NoteDetail from '../NoteDetail/NoteDetail';
 import { useAppSelector } from '../../store/store';
@@ -11,13 +11,14 @@ type Props = { createNoteHandler: () => void };
 const Notes = ({ createNoteHandler }: Props) => {
   const [details, setDetails] = useState('');
   const [title, setTitle] = useState('');
+  const [id, setId] = useState('');
   const { data, error, pending } = useAppSelector(getNotes);
 
-  const detailHandler = (content: string, title: string) => {
+  const detailHandler = (content: string, title: string, id: string) => {
     setDetails(content);
     setTitle(title);
+    setId(id);
   };
-
   return (
     <div className={styles.notes}>
       <NoteList
@@ -27,7 +28,7 @@ const Notes = ({ createNoteHandler }: Props) => {
         pending={pending}
         detailHandler={detailHandler}
       />
-      <NoteDetail title={title} details={details} />
+      <NoteDetail id={id} title={title} details={details} />
     </div>
   );
 };

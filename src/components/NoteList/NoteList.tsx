@@ -8,7 +8,7 @@ type Props = {
   notesData: { username: string; notes: Note[] };
   pending: boolean;
   error: boolean;
-  detailHandler: (content: string, title: string) => void;
+  detailHandler: (content: string, title: string, key: string) => void;
   createNoteHandler: () => void;
 };
 
@@ -37,6 +37,7 @@ const NoteList = ({
                 <li key={note.id}>
                   <NoteItem
                     key={note.id}
+                    id={note.id}
                     title={note.title}
                     content={note.note}
                     onClick={detailHandler}

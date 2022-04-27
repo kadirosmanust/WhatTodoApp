@@ -16,9 +16,9 @@ export default async function handler(
 
   if (isUser) {
     const client = await MongoClient.connect(
-      `mongodb+srv://kadoraw:bxKfHk84RnWfP3t@cluster0.34tyh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+      `mongodb+srv://${process.env.MONGO_DB_USERNAME}:${process.env.MONGO_DB_PASSWORD}@cluster0.34tyh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
     );
-    const db = client.db('whattodo');
+    const db = client.db(process.env.MONGO_DB_DATABASENAME);
     const collection = db.collection('Users');
     const user = (await collection.findOne({ username: username })) as any;
     const notes = user.notes;
@@ -34,6 +34,7 @@ export default async function handler(
     );
 
     res.status(200).json({ message: 'Success!' } as any);
+    return;
   }
   res.status(401);
 }

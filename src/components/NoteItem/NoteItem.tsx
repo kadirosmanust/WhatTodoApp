@@ -5,16 +5,17 @@ import { ChevronRightIcon } from '@heroicons/react/solid';
 
 type Props = {
   title: string;
+  id: string;
   content: string;
-  onClick: (content: string, title: string) => void;
+  onClick: (content: string, title: string, id: string) => void;
 };
 
-const NoteItem = ({ title, content, onClick }: Props) => {
+const NoteItem = ({ id, title, content, onClick }: Props) => {
   return (
     <div
       className={styles.note}
       onClick={() => {
-        onClick(content, title);
+        onClick(content, title, id);
       }}
     >
       <ChevronRightIcon className={styles.icon} /> {title}
