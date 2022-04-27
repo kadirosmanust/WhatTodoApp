@@ -22,11 +22,11 @@ const MainNavigator = () => {
       <nav className={styles.nav}>
         <div className={styles.profile} onClick={profileClickHandler}>
           <UserIcon className={styles.icon} />
-          Profile
+          <p>Profile</p>
         </div>
         <div className={styles.logout} onClick={logOutClickHandler}>
           <LogoutIcon className={styles.icon} />
-          Logout
+          <p>Logout</p>
         </div>
       </nav>
       <div className={styles.logo}>WhatTodo</div>

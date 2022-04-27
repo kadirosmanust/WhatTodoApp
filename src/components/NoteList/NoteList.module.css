@@ -58,3 +58,21 @@
   z-index: 99999;
   overflow: auto;
 }
+.none {
+  display: none !important;
+}
+@media screen and (max-width: 600px) {
+  .list {
+    width: 250px;
+    position: absolute;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.3px;
+    background-color: #f8f5ec;
+    border-top: 0.1px solid rgba(0, 0, 0, 0.2);
+    z-index: 0;
+  }
+}

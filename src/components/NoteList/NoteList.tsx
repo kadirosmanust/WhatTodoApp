@@ -10,6 +10,7 @@ type Props = {
   error: boolean;
   detailHandler: (content: string, title: string, key: string) => void;
   createNoteHandler: () => void;
+  isOpen: boolean;
 };
 
 const NoteList = ({
@@ -18,9 +19,12 @@ const NoteList = ({
   error,
   detailHandler,
   createNoteHandler,
+  isOpen,
 }: Props) => {
+  const listClass = !isOpen ? `${styles.list}` : `${styles.none}`;
+
   return (
-    <div className={styles.list}>
+    <div className={listClass}>
       {!pending && (
         <div className={styles.create} onClick={createNoteHandler}>
           Create Note

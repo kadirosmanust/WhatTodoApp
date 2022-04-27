@@ -28,7 +28,7 @@ const NoteDetail = ({ title, details, id }: Props) => {
           <div className={styles.detailheader}>
             <h1>{title}</h1>
             <div className={styles.delete} onClick={deleteNoteHandler}>
-              Delete Note
+              Delete
             </div>
           </div>
           <div className={styles.detailbody}>{details}</div>
