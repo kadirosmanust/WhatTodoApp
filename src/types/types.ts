@@ -2,6 +2,7 @@ export type Note = {
   title: string;
   id: string;
   note: string;
+  url: string;
 };
 
 export type User = {

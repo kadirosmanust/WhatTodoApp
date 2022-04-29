@@ -1,5 +1,5 @@
 .list {
-  width: 300px;
+  width: 300px !important;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -79,6 +79,6 @@
     border-radius: 0.3px;
     background-color: #f8f5ec;
     border-top: 0.1px solid rgba(0, 0, 0, 0.2);
-    z-index: 0;
+    z-index: 2;
   }
 }

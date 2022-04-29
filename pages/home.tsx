@@ -1,6 +1,5 @@
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
-import Footer from '../src/components/layout/Footer';
 import MainNavigator from '../src/components/layout/MainNavigator';
 import NewNote from '../src/components/NewNote/NewNote';
 import Notes from '../src/components/Notes/Notes';
@@ -31,7 +30,6 @@ const Home = () => {
           {creating && <NewNote exitHandler={createNoteHandler} />}
           <MainNavigator />
           <Notes createNoteHandler={createNoteHandler} />
-          <Footer />
         </>
       )}
     </>
