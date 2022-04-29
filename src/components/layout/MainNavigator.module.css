@@ -59,6 +59,10 @@
   background-color: #e8e7e4;
   border-radius: 5px;
 }
+.header p {
+  padding: 0;
+  margin: 0;
+}
 @media screen and (max-width: 600px) {
   .header p {
     display: none;

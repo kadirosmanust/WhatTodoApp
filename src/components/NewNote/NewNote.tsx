@@ -1,33 +1,41 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { createNote } from '../../store/reducers/Notes/noteSlice';
 import styles from './NewNote.module.css';
 import type { Note } from '../../types/types';
 import { v4 } from 'uuid';
 import { useAppDispatch } from '../../store/store';
+import { useForm } from 'react-hook-form';
 
 type Props = { exitHandler: () => void };
-
+type NoteInput = {
+  title: string;
+  detail: string;
+  url: string;
+};
 const NewNote = ({ exitHandler }: Props) => {
-  const title = useRef<HTMLInputElement>(null);
-  const content = useRef<HTMLInputElement>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<NoteInput>({ mode: 'onTouched' });
   const dispatch = useAppDispatch();
 
-  const submitHandler = (event: React.FormEvent) => {
-    event.preventDefault();
-    if (
-      title.current.value.trim() === '' ||
-      content.current.value.trim() === ''
-    ) {
-      return;
-    }
+  const submitHandler = handleSubmit(({ detail, title, url }) => {
     const note: Note = {
-      title: title.current.value,
-      note: content.current.value,
+      title: title,
+      note: detail,
+      url: url,
       id: v4(),
     };
 
     dispatch(createNote(note));
     exitHandler();
+  });
+
+  const newNoteOptions = {
+    url: {},
+    title: { required: 'Title is required.' },
+    details: {},
   };
 
   return (
@@ -53,9 +61,23 @@ const NewNote = ({ exitHandler }: Props) => {
         </div>
         <form className={styles.form} onSubmit={submitHandler}>
           <label>Title</label>
-          <input className={styles.input} type='text' ref={title} />
+          <input
+            className={styles.input}
+            type='text'
+            {...register('title', newNoteOptions.title)}
+          />
+          <label>Image Url</label>
+          <input
+            className={styles.input}
+            type='url'
+            {...register('url', newNoteOptions.url)}
+          />
           <label>Content</label>
-          <input className={styles.content} type='text' ref={content} />
+          <input
+            className={styles.content}
+            type='text'
+            {...register('detail', newNoteOptions.details)}
+          />
           <button type='submit'>Add Note</button>
         </form>
       </div>

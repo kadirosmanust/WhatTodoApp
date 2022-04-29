@@ -13,12 +13,19 @@ const Notes = ({ createNoteHandler }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [id, setId] = useState('');
+  const [url, setUrl] = useState('');
   const { data, error, pending } = useAppSelector(getNotes);
 
-  const detailHandler = (content: string, title: string, id: string) => {
+  const detailHandler = (
+    content: string,
+    title: string,
+    id: string,
+    url: string
+  ) => {
     setDetails(content);
     setTitle(title);
     setId(id);
+    setUrl(url);
   };
   return (
     <div className={styles.notes}>
@@ -51,7 +58,7 @@ const Notes = ({ createNoteHandler }: Props) => {
         pending={pending}
         detailHandler={detailHandler}
       />
-      <NoteDetail id={id} title={title} details={details} />
+      <NoteDetail id={id} title={title} details={details} url={url} />
     </div>
   );
 };
