@@ -8,17 +8,17 @@ import { fetchNotes } from '../src/store/reducers/Notes/noteSlice';
 import { useAppDispatch, useAppSelector } from '../src/store/store';
 
 const Home = () => {
-  const { isRegistered, username } = useAppSelector((state) => state.auth);
+  const { isLogin, username } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const [creating, setCreating] = useState(false);
   useEffect(() => {
-    if (!isRegistered) {
+    if (!isLogin) {
       Router.push('/welcome');
       return;
     }
 
     dispatch(fetchNotes(username));
-  }, [isRegistered, dispatch, username]);
+  }, [isLogin, dispatch, username]);
 
   const createNoteHandler = () => {
     setCreating(!creating);
@@ -26,7 +26,7 @@ const Home = () => {
 
   return (
     <>
-      {isRegistered && (
+      {isLogin && (
         <>
           {creating && <NewNote exitHandler={createNoteHandler} />}
           <MainNavigator />

@@ -1,43 +1,58 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './SignInForm.module.css';
 import { httpPost } from '../../utils/helpers/httpHelper';
 import hash from '../../utils/helpers/hashHelper';
 import Router from 'next/router';
 import store from '../../store/store';
-import { register } from '../../store/reducers/Auth/authSlice';
-
+import { login } from '../../store/reducers/Auth/authSlice';
+import { useForm } from 'react-hook-form';
+type User = {
+  username: string;
+  password: string;
+};
 const SignInForm = () => {
   const [buttonText, setButtonText] = useState('Login');
-  const username = useRef<HTMLInputElement>(null);
-  const password = useRef<HTMLInputElement>(null);
-  const submitHandler = async (event: React.FormEvent) => {
-    setButtonText('Wait ...');
-    event.preventDefault();
-    if (
-      username.current?.value.trim() === '' ||
-      password.current?.value.trim() === ''
-    ) {
-      return;
-    }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm<User>({ mode: 'onTouched' });
 
-    const hashedUserName = username.current?.value; //TODO: Hash this.
-    const hashedPassword = hash(password.current?.value);
+  const loginOption = {
+    username: { required: 'Username is required.' },
+    password: { required: 'Password is required.' },
+  };
+
+  const submitHandler = handleSubmit(async ({ username, password }) => {
+    const hashedPassword = hash(password);
 
     const user = {
-      username: hashedUserName,
+      username: username,
       password: hashedPassword,
     };
+
     try {
-      await httpPost('api/Auth/login', user);
+      const response = (await httpPost('api/Auth/login', user)) as any;
+      if (!response.data.username && response.data.message !== 'Success!') {
+        setError('username', { type: 'custom', message: 'User not found!' });
+        setButtonText('Login.');
+
+        return;
+      }
+      if (!response.data.password && response.data.message !== 'Success!') {
+        setError('password', { type: 'custom', message: 'Password is wrong!' });
+        setButtonText('Login.');
+
+        return;
+      }
       setButtonText('Logged in.');
-      store.dispatch(
-        register({ isRegistered: true, username: hashedUserName })
-      );
+      store.dispatch(login({ isLogin: true, username: username }));
       Router.push('/home');
     } catch (error) {
       setButtonText('Try Again.');
     }
-  };
+  });
 
   return (
     <>
@@ -48,16 +63,22 @@ const SignInForm = () => {
           <input
             type='text'
             className={styles.input}
-            ref={username}
+            {...register('username', loginOption.username)}
             placeholder='Username'
           />
+          {errors.username && (
+            <label className={styles.error}>{errors.username.message}</label>
+          )}
           <label className={styles.label}>Password</label>
           <input
             className={styles.input}
             type='password'
-            ref={password}
+            {...register('password', loginOption.password)}
             placeholder='Password'
           />
+          {errors.password && (
+            <label className={styles.error}>{errors.password.message}</label>
+          )}
           <button className={styles.button} type='submit'>
             <div className={styles.svg}>
               <svg

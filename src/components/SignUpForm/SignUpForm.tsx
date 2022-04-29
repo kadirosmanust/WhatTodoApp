@@ -4,160 +4,134 @@ import { httpPost } from '../../utils/helpers/httpHelper';
 import hash from '../../utils/helpers/hashHelper';
 import Router from 'next/router';
 import store from '../../store/store';
-import { register } from '../../store/reducers/Auth/authSlice';
+import { login } from '../../store/reducers/Auth/authSlice';
+import { useForm } from 'react-hook-form';
 
-type Props = {};
-type User = { username: string; email: string; password: string };
+type User = {
+  username: string;
+  email: string;
+  password: string;
+  passagain: string;
+};
 
-const SignUpForm = (props: Props) => {
-  const [usernameValidate, setUsernameValid] = useState(`${styles.input}`);
-  const [emailValidate, setEmailValid] = useState(`${styles.input}`);
-  const [passwordValidate, setPassValid] = useState(`${styles.input}`);
-  const [passwordAgainValidate, setPassAgainValid] = useState(
-    `${styles.input}`
-  );
+const SignUpForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm<User>({ mode: 'onTouched' });
+  const password = useRef({});
+  password.current = watch('password', '');
+
   const [buttonText, setButtonText] = useState('Register');
 
-  const username = useRef<HTMLInputElement>(null);
-  const email = useRef<HTMLInputElement>(null);
-  const password = useRef<HTMLInputElement>(null);
-  const passwordagain = useRef<HTMLInputElement>(null);
-
-  const submitHandler = async (event: React.FormEvent) => {
+  const denem = handleSubmit(async ({ username, email, password }) => {
     setButtonText('Wait...');
-    event.preventDefault();
-
-    if (
-      username.current?.value.trim() === '' ||
-      email.current?.value.trim() === '' ||
-      password.current?.value.trim() === '' ||
-      passwordagain?.current?.value.trim() === ''
-    ) {
-      usernameBlurHandler();
-      emailBlurHandler();
-      passwordBlurHandler();
-      passAgainBlurHandler();
-      setButtonText('Register');
-      return;
-    }
-    if (
-      password.current?.value.trim() !== passwordagain?.current?.value.trim()
-    ) {
-      //TODO: Error handle
-
-      setButtonText('Register');
-      return;
-    }
-    if (!email.current?.value.trim().includes('@')) {
-      //TODO: Error handle
-
-      setButtonText('Register');
-      return;
-    }
-
-    const hashedpass = hash(password.current?.value);
-
-    const newUser: User = {
-      username: username.current?.value!,
-      email: email.current?.value!,
+    const hashedpass = hash(password);
+    const newUser = {
+      username,
+      email,
       password: hashedpass,
     };
     try {
       await httpPost('/api/Auth/register', newUser);
+      store.dispatch(login({ isLogin: true, username: newUser.username }));
       setButtonText('Success!');
-      store.dispatch(
-        register({ isRegistered: true, username: newUser.username })
-      );
       Router.push('/home');
     } catch (error) {
       setButtonText('Try Again!');
     }
-  };
+  });
 
-  const usernameBlurHandler = () => {
-    const usernameValidclass =
-      username.current?.value.trim() !== ''
-        ? `${styles.input} ${styles.valid}`
-        : `${styles.input} ${styles.reject}`;
-
-    setUsernameValid(usernameValidclass);
-  };
-
-  const emailBlurHandler = () => {
-    const validclass =
-      email.current?.value.trim() !== '' && email.current?.value.includes('@')
-        ? `${styles.input} ${styles.valid}`
-        : `${styles.input} ${styles.reject}`;
-
-    setEmailValid(validclass);
-  };
-
-  const passwordBlurHandler = () => {
-    const validclass =
-      password.current?.value.trim() !== ''
-        ? `${styles.input} ${styles.valid}`
-        : `${styles.input} ${styles.reject}`;
-
-    setPassValid(validclass);
-  };
-  const passAgainBlurHandler = () => {
-    const validclass =
-      passwordagain?.current?.value.trim() !== ''
-        ? `${styles.input} ${styles.valid}`
-        : `${styles.input} ${styles.reject}`;
-
-    setPassAgainValid(validclass);
+  const registerOption = {
+    username: {
+      required: 'Username is required.',
+      minLength: {
+        value: 4,
+        message: 'Have to be bigger than 4',
+      },
+    },
+    password: {
+      required: 'Password is required.',
+      minLength: {
+        value: 6,
+        message: 'Have to be bigger than 6',
+      },
+    },
+    passwordAgain: {
+      required: 'Password is required.',
+      validate: {
+        isMatch: (value: string) =>
+          value === password.current || 'The passwords do not match',
+      },
+    },
+    email: {
+      required: 'Email is required.',
+      pattern: {
+        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+        message: 'invalid email address',
+      },
+    },
   };
 
   return (
     <>
       <div className={styles.main}>
         <div className={styles.head}>Sign Up</div>
-        <form className={styles.form} onSubmit={submitHandler}>
+        <form className={styles.form} onSubmit={denem}>
           <label className={styles.label} htmlFor='username'>
             Username
           </label>
           <input
             type='text'
             id='username'
-            ref={username}
-            onBlur={usernameBlurHandler}
-            className={usernameValidate}
+            {...register('username', registerOption.username)}
+            className={styles.input}
             placeholder='Username'
           />
+          {errors.username && (
+            <label className={styles.error}>{errors.username.message}</label>
+          )}
           <label htmlFor='email' className={styles.label}>
             Email
           </label>
           <input
             id='email'
             type='text'
-            onBlur={emailBlurHandler}
-            ref={email}
-            className={emailValidate}
+            {...register('email', registerOption.email)}
+            className={styles.input}
             placeholder='Email'
           />
+          {errors.email && (
+            <label className={styles.error}>{errors.email.message}</label>
+          )}
           <label htmlFor='password' className={styles.label}>
             Password
           </label>
           <input
             id='password'
-            className={passwordValidate}
-            onBlur={passwordBlurHandler}
-            ref={password}
+            className={styles.input}
+            {...register('password', registerOption.password)}
             type='password'
             placeholder='Password'
           />
+          {errors.password && (
+            <label className={styles.error}>{errors.password.message}</label>
+          )}
           <label htmlFor='passagain' className={styles.label}>
             Password Again
           </label>
           <input
             id='passagain'
-            className={passwordAgainValidate}
-            onBlur={passAgainBlurHandler}
-            ref={passwordagain}
+            {...register('passagain', registerOption.passwordAgain)}
+            className={styles.input}
             type='password'
             placeholder='Password Again'
           />
+          {errors.passagain && (
+            <label className={styles.error}>{errors.passagain.message}</label>
+          )}
           <button className={styles.button} type='submit'>
             <div className={styles.svg}>
               <svg

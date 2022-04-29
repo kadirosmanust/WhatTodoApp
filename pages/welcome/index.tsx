@@ -7,14 +7,14 @@ import { useAppSelector } from '../../src/store/store';
 import styles from './index.module.css';
 
 const Welcome = () => {
-  const { isRegistered, username } = useAppSelector((state) => state.auth);
+  const { isLogin, username } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    if (!isRegistered) {
+    if (!isLogin) {
       Router.push('/welcome');
       return;
     }
-  }, [isRegistered]);
+  }, [isLogin]);
   return (
     <div className={styles.center}>
       <div className={styles.black}>WhatTodo</div>
@@ -29,8 +29,8 @@ const Welcome = () => {
           KadoRaw
         </a>
       </div>
-      {!isRegistered && <SignInUp />}
-      {isRegistered && (
+      {!isLogin && <SignInUp />}
+      {isLogin && (
         <Link href='/home'>
           <a className={styles.btn}> Let's Start</a>
         </Link>

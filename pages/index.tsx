@@ -3,14 +3,14 @@ import { useEffect } from 'react';
 import { useAppSelector } from '../src/store/store';
 
 const Home = () => {
-  const { isRegistered } = useAppSelector((state) => state.auth);
+  const { isLogin } = useAppSelector((state) => state.auth);
   useEffect(() => {
-    if (isRegistered) {
+    if (isLogin) {
       Router.push('/home');
       return;
     }
     Router.push('/welcome');
-  }, [isRegistered]);
+  }, [isLogin]);
 
   return;
 };

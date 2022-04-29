@@ -4,14 +4,14 @@ import ProfileCard from '../../src/components/ProfileCard/ProfileCard';
 import { useAppSelector } from '../../src/store/store';
 
 const UserProfile = () => {
-  const { isRegistered, username } = useAppSelector((state) => state.auth);
+  const { isLogin, username } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    if (!isRegistered) {
+    if (!isLogin) {
       Router.push('/home');
       return;
     }
-  }, [isRegistered]);
+  }, [isLogin]);
 
   return (
     <div className='center'>

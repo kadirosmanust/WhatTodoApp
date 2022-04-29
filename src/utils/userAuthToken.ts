@@ -26,7 +26,6 @@ export const checkToken = async (token: string) => {
     }
   );
   const isValid = jwtResponse ? true : false;
-  console.log(isValid);
 
   return { isValid, username: jwtResponse.payload.username };
 };
