@@ -36,7 +36,8 @@ export const createNote: any = createAsyncThunk(
       note
     )) as AxiosResponse;
 
-    return note;
+    const payload = { status: response.status, note };
+    return payload;
   }
 );
 
@@ -47,8 +48,8 @@ export const deleteNote: any = createAsyncThunk(
       'http://localhost:3000/api/utils/delete-note',
       note
     )) as AxiosResponse;
-
-    return note;
+    const payload = { status: response.status, note };
+    return payload;
   }
 );
 
@@ -61,6 +62,9 @@ export const notesSlice = createSlice({
       state.pending = true;
     },
     [fetchNotes.fulfilled](state, { payload }) {
+      if (payload.status === 304) {
+        return;
+      }
       state.pending = false;
       state.data = payload;
     },
@@ -72,8 +76,11 @@ export const notesSlice = createSlice({
       state.pending = true;
     },
     [createNote.fulfilled](state, { payload }) {
+      if (payload.status === 304) {
+        return;
+      }
       state.pending = false;
-      state.data.notes = [...state.data.notes, payload];
+      state.data.notes = [...state.data.notes, payload.note];
     },
     [createNote.rejected](state) {
       state.pending = false;
@@ -83,9 +90,13 @@ export const notesSlice = createSlice({
       state.pending = true;
     },
     [deleteNote.fulfilled](state, { payload }) {
+      if (payload.status === 304) {
+        return;
+      }
+      const pNote = payload.note;
       state.pending = false;
       const notes = state.data.notes.filter(
-        (note) => note.id !== payload.id
+        (note) => note.id !== pNote.id
       ) as any;
       state.data.notes = [...notes];
     },

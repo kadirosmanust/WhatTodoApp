@@ -33,20 +33,26 @@
   padding: 0.1em;
   padding-left: 0.5em;
   cursor: pointer;
+  transition: all 0.1s ease-in-out;
 }
 .ul li:hover {
   background-color: #e8e7e4;
   color: #1b1b1b;
 }
 .create {
-  background-color: rgba(255, 38, 67, 0.753);
+  background-color: #ee6055;
   padding: 0.3rem 1rem;
   border-radius: 4px;
+  color: #f2e8cf;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 1rem;
   margin-top: 1rem;
   cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+}
+.create:hover {
+  box-shadow: #ee6055 0px 2px 7px;
 }
 .darkmodal {
   position: absolute;

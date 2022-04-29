@@ -11,7 +11,7 @@
   transition: box-shadow 0.4s ease-in-out;
 }
 .signIn:hover {
-  box-shadow: rgba(0, 23, 59, 0.452) 0px 4px 14px;
+  box-shadow: rgba(0, 23, 59, 0.152) 0px 4px 14px;
 }
 .signUp {
   border: 1px solid rgb(0, 77, 201);

@@ -7,7 +7,6 @@ import Notes from '../src/components/Notes/Notes';
 import { fetchNotes } from '../src/store/reducers/Notes/noteSlice';
 import { useAppDispatch, useAppSelector } from '../src/store/store';
 
-
 const Home = () => {
   const { isRegistered, username } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();

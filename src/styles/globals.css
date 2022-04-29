@@ -39,11 +39,11 @@ a {
   border-radius: 15px;
   border: 1px solid transparent;
   width: 45%;
-  transition: box-shadow 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
   cursor: pointer;
 }
 .gohome:hover {
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+  color: rgb(53, 53, 53);
 }
 .gohome svg {
   width: 1.3rem;

@@ -7,7 +7,8 @@
   width: 40%;
   height: 50%;
   border-radius: 20px;
-  box-shadow: 0px 0px 12px 3px rgba(124, 60, 30, 0.2);
+  box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.2);
+
   font-family: 'Poppins', sans-serif;
 }
 .header {
@@ -22,6 +23,7 @@
 }
 .header h1 {
   font-size: 2rem;
+  color: #494949;
 }
 .body {
   display: flex;
@@ -33,16 +35,20 @@
   padding-top: 2rem;
   padding-right: 3rem;
   padding-bottom: 3rem;
+  color: #494949;
 }
 .btn {
-  border: 1px solid rgb(255, 47, 47);
   border-radius: 5px;
   padding: 0.4rem;
-  padding-left: 0.8rem;
-  padding-right: 0.8rem;
-  background-color: rgba(241, 78, 78, 0.897);
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+  background-color: #ee6055;
+  transition: all 0.2s ease-in-out;
   color: #fff;
   cursor: pointer;
+}
+.btn:hover {
+  box-shadow: #ee6055 0px 2px 7px;
 }
 .footer {
   padding-bottom: 1rem;

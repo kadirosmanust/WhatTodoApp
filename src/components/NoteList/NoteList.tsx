@@ -3,6 +3,7 @@ import React from 'react';
 import NoteItem from '../NoteItem/NoteItem';
 import styles from './NoteList.module.css';
 import type { Note } from '../../types/types';
+import LoadingSpinner from '../UI/LoadingSpinner';
 
 type Props = {
   notesData: { username: string; notes: Note[] };
@@ -30,7 +31,7 @@ const NoteList = ({
           Create Note
         </div>
       )}
-      {pending && <p>Loading...</p>}
+      {pending && <LoadingSpinner />}
       {!pending && <p>Hello {notesData.username}</p>}
 
       {!error && !pending && (
