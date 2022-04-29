@@ -4,14 +4,14 @@ import SignInForm from '../src/components/SignInForm/SignInForm';
 import { useAppSelector } from '../src/store/store';
 
 const Signin = () => {
-  const { isRegistered } = useAppSelector((state) => state.auth);
+  const { isLogin } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    if (isRegistered) {
+    if (isLogin) {
       Router.push('/home');
       return;
     }
-  }, [isRegistered]);
+  }, [isLogin]);
 
   const goHome = () => {
     Router.push('/welcome');
@@ -22,8 +22,8 @@ const Signin = () => {
 
   return (
     <div className='center'>
-      {!isRegistered && <SignInForm />}
-      {!isRegistered && (
+      {!isLogin && <SignInForm />}
+      {!isLogin && (
         <div className='nav'>
           <div className='gohome' onClick={goHome}>
             <svg

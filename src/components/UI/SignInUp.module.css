@@ -9,6 +9,8 @@
   align-items: center;
   margin-right: 10px;
   transition: box-shadow 0.4s ease-in-out;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 .signIn:hover {
   box-shadow: rgba(0, 23, 59, 0.152) 0px 4px 14px;
@@ -26,6 +28,8 @@
   margin-left: 10px;
   color: white;
   transition: box-shadow 0.4s ease-in-out;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 .signUp:hover {
   box-shadow: rgba(0, 98, 255, 0.75) 3px 8px 18px;

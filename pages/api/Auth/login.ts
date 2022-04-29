@@ -32,7 +32,7 @@ export default async function handler(
   });
 
   if (!user) {
-    res.status(401).json({ username: null, password: false } as any);
+    res.status(200).json({ username: null, password: false } as any);
     return;
     //TODO: Throw error
   }
@@ -40,7 +40,7 @@ export default async function handler(
   const isUser = user.password === password;
 
   if (!isUser) {
-    res.status(401).json({ username: user.username, password: isUser } as any);
+    res.status(200).json({ username: user.username, password: isUser } as any);
     //TODO: Throw error
     return;
   }

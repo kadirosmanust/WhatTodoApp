@@ -74,6 +74,14 @@
 .reject {
   border: 2px solid red;
 }
+.error {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.5em;
+  color: rgb(255, 80, 80);
+}
 @media screen and (max-width: 500px) {
   .main {
     display: flex;

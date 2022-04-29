@@ -4,7 +4,7 @@ import store from '../src/store/store';
 import { Provider } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { httpGet } from '../src/utils/helpers/httpHelper';
-import { register } from '../src/store/reducers/Auth/authSlice';
+import { login } from '../src/store/reducers/Auth/authSlice';
 import { AxiosResponse } from 'axios';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -15,9 +15,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         '/api/Auth/checkuserindex'
       )) as AxiosResponse;
 
-      const { isLogged: isRegistered, username } = response.data;
+      const { isLogged: isLogin, username } = response.data;
 
-      store.dispatch(register({ isRegistered, username }));
+      store.dispatch(login({ isLogin, username }));
       setLoading(true);
     })();
   }, []);
