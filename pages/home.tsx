@@ -28,6 +28,7 @@ const Home = () => {
       {isLogin && (
         <>
           {creating && <NewNote exitHandler={createNoteHandler} />}
+
           <MainNavigator />
           <Notes createNoteHandler={createNoteHandler} />
         </>

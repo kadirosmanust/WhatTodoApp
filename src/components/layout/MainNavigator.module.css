@@ -12,7 +12,6 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  z-index: 10;
   width: 100%;
   margin-right: 0.8em;
 }
@@ -29,8 +28,8 @@
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   color: #242424;
-  width: 100% !important;
   position: absolute;
+  cursor: pointer;
 }
 .icon {
   width: 1em;

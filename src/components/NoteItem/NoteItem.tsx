@@ -19,7 +19,8 @@ const NoteItem = ({ id, title, content, onClick, url }: Props) => {
         onClick(content, title, id, url);
       }}
     >
-      <ChevronRightIcon className={styles.icon} /> {title}
+      <ChevronRightIcon className={styles.icon} />
+      <div className={styles.title}>{title}</div>
     </div>
   );
 };

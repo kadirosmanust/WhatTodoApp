@@ -29,7 +29,14 @@ const MainNavigator = () => {
           <p>Logout</p>
         </div>
       </nav>
-      <div className={styles.logo}>WhatTodo</div>
+      <div
+        className={styles.logo}
+        onClick={() => {
+          Router.push('/home');
+        }}
+      >
+        WhatTodo
+      </div>
     </header>
   );
 };

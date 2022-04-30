@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { deleteNote } from '../../store/reducers/Notes/noteSlice';
 import { useAppDispatch } from '../../store/store';
@@ -29,7 +30,7 @@ const NoteDetail = ({ title, details, id, url }: Props) => {
       {!isDeleted && title && (
         <>
           <div className={styles.img}>
-            <img src={imageUrl}></img>
+            <img src={imageUrl} alt='Title' />
           </div>
           <div className={styles.detailheader}>
             <div className={styles.delete} onClick={deleteNoteHandler}>

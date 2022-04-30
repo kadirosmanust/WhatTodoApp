@@ -1,13 +1,20 @@
 .note {
+  box-sizing: border-box;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  font-size: 15px;
 }
 .icon {
   width: 1em;
   height: 1em;
   margin-right: 0.1em;
+  flex-shrink: 0;
+}
+.title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-right: 1em;
 }
