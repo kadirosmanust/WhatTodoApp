@@ -26,12 +26,12 @@
   justify-content: flex-start;
   align-items: center;
   margin-top: 4rem;
-  padding-left: 25rem;
-  padding-right: 25rem;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 .title {
-  padding-left: 25rem;
-  padding-right: 25rem;
+  padding-left: 10%;
+  padding-right: 10%;
   text-align: left;
   white-space: pre-wrap;
   word-break: break-word;
@@ -62,8 +62,8 @@
 .detailbody {
   display: flex;
   flex-grow: 1;
-  padding-left: 25rem;
-  padding-right: 25rem;
+  padding-left: 10%;
+  padding-right: 10%;
   justify-content: flex-start;
   align-items: flex-start;
   border-radius: 25px;
