@@ -5,15 +5,14 @@ import NoteDetail from '../NoteDetail/NoteDetail';
 import { useAppSelector } from '../../store/store';
 import { getNotes } from '../../store/reducers/Notes/noteSlice';
 import NoteList from '../NoteList/NoteList';
+import type { Note } from '../../types/types';
 
 type Props = { createNoteHandler: () => void };
 
 const Notes = ({ createNoteHandler }: Props) => {
-  const [details, setDetails] = useState('');
+
   const [isOpen, setIsOpen] = useState(false);
-  const [title, setTitle] = useState('');
-  const [id, setId] = useState('');
-  const [url, setUrl] = useState('');
+  const [note, setNote] = useState<Note>(null);
   const { data, error, pending } = useAppSelector(getNotes);
 
   const detailHandler = (
@@ -22,10 +21,8 @@ const Notes = ({ createNoteHandler }: Props) => {
     id: string,
     url: string
   ) => {
-    setDetails(content);
-    setTitle(title);
-    setId(id);
-    setUrl(url);
+   
+    setNote({ id: id, note: content, title: title, url: url });
   };
   return (
     <div className={styles.notes}>
@@ -58,7 +55,7 @@ const Notes = ({ createNoteHandler }: Props) => {
         pending={pending}
         detailHandler={detailHandler}
       />
-      <NoteDetail id={id} title={title} details={details} url={url} />
+      <NoteDetail note={note} />
     </div>
   );
 };

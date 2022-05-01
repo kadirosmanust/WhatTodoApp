@@ -8,12 +8,14 @@ export type NotesState = {
   data: { username: string; notes: Note[] };
   pending: boolean;
   error: boolean;
+  updating: boolean;
 };
 
 const initialState: NotesState = {
   data: { username: '', notes: [] },
   pending: false,
   error: false,
+  updating: false,
 };
 
 export const fetchNotes: any = createAsyncThunk(
@@ -46,6 +48,18 @@ export const deleteNote: any = createAsyncThunk(
   async (note: Note, thunkAPI) => {
     const response = (await axios.post(
       'http://localhost:3000/api/utils/delete-note',
+      note
+    )) as AxiosResponse;
+    const payload = { status: response.status, note };
+    return payload;
+  }
+);
+
+export const updateNotes: any = createAsyncThunk(
+  'notes/updateNotes',
+  async (note: Note, thunkAPI) => {
+    const response = (await axios.post(
+      'http://localhost:3000/api/utils/update-note',
       note
     )) as AxiosResponse;
     const payload = { status: response.status, note };
@@ -102,6 +116,25 @@ export const notesSlice = createSlice({
     },
     [deleteNote.rejected](state) {
       state.pending = false;
+      state.error = true;
+    },
+    [updateNotes.pending](state) {
+      state.updating = true;
+    },
+    [updateNotes.fulfilled](state, { payload }) {
+      if (payload.status === 304) {
+        return;
+      }
+      const pNote = payload.note;
+      state.updating = false;
+      const notes = state.data.notes.filter(
+        (note) => note.id !== pNote.id
+      ) as any;
+      notes.push(pNote);
+      state.data.notes = [...notes];
+    },
+    [updateNotes.rejected](state) {
+      state.updating = false;
       state.error = true;
     },
   },
