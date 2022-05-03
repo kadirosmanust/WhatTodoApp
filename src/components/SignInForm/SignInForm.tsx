@@ -59,8 +59,11 @@ const SignInForm = () => {
       <div className={styles.main}>
         <div className={styles.head}>Sign In</div>
         <form className={styles.form} onSubmit={submitHandler}>
-          <label className={styles.label}>Username</label>
+          <label className={styles.label} htmlFor='Username'>
+            Username
+          </label>
           <input
+            id='Username'
             type='text'
             className={styles.input}
             {...register('username', loginOption.username)}
@@ -69,8 +72,11 @@ const SignInForm = () => {
           {errors.username && (
             <label className={styles.error}>{errors.username.message}</label>
           )}
-          <label className={styles.label}>Password</label>
+          <label className={styles.label} htmlFor='Password'>
+            Password
+          </label>
           <input
+            id='Password'
             className={styles.input}
             type='password'
             {...register('password', loginOption.password)}
