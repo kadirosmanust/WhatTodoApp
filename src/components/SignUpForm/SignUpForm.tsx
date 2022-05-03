@@ -26,7 +26,7 @@ const SignUpForm = () => {
 
   const [buttonText, setButtonText] = useState('Register');
 
-  const denem = handleSubmit(async ({ username, email, password }) => {
+  const submitHandler = handleSubmit(async ({ username, email, password }) => {
     setButtonText('Wait...');
     const hashedpass = hash(password);
     const newUser = {
@@ -60,7 +60,7 @@ const SignUpForm = () => {
       },
     },
     passwordAgain: {
-      required: 'Password is required.',
+      required: 'PasswordAgain is required.',
       validate: {
         isMatch: (value: string) =>
           value === password.current || 'The passwords do not match',
@@ -79,7 +79,7 @@ const SignUpForm = () => {
     <>
       <div className={styles.main}>
         <div className={styles.head}>Sign Up</div>
-        <form className={styles.form} onSubmit={denem}>
+        <form className={styles.form} onSubmit={submitHandler}>
           <label className={styles.label} htmlFor='username'>
             Username
           </label>

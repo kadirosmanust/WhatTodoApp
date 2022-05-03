@@ -7,18 +7,20 @@ type Props = {
   title: string;
   id: string;
   content: string;
-  onClick: (content: string, title: string, id: string) => void;
+  url: string;
+  onClick: (content: string, title: string, id: string, url: string) => void;
 };
 
-const NoteItem = ({ id, title, content, onClick }: Props) => {
+const NoteItem = ({ id, title, content, onClick, url }: Props) => {
   return (
     <div
       className={styles.note}
       onClick={() => {
-        onClick(content, title, id);
+        onClick(content, title, id, url);
       }}
     >
-      <ChevronRightIcon className={styles.icon} /> {title}
+      <ChevronRightIcon className={styles.icon} />
+      <div className={styles.title}>{title}</div>
     </div>
   );
 };

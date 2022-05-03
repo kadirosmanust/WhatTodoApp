@@ -1,7 +1,8 @@
 .notes {
   display: flex;
   justify-content: flex-start;
-  align-content: center;
+
+  height: 100%;
 }
 .mobilemenu {
   margin-left: 1rem;
