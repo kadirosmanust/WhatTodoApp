@@ -19,7 +19,7 @@
 .inner {
   border: 0px;
   width: 100%;
-  position: none;
+  position: static !important;
 }
 .inner:focus {
   outline-color: rgba(0, 0, 0, 0.048);
