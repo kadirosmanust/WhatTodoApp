@@ -9,6 +9,29 @@ body {
   background-color: #fffefc;
   height: 100vh;
   width: 100%;
+  --background-color: #fff;
+  --spinner-color: #ee6055;
+  --headerbackground-color: #f7f6f3;
+  --headertext-color: #a19f9a;
+  --headerlogo-color: #242424;
+  --headerhover-color: #e8e7e4;
+  --button-color: #ee6055;
+  --buttontext-color: #f2e8cf;
+  --darkmodal-color: #1b1b1b46;
+  --modalbackground-color: #f8f5ec;
+  --modaltext-color: #494444;
+  --listitemtext-color: #c1c1c1;
+  --listitemhover-color: #e8e7e4;
+  --listitemtexthover-color: #1b1b1b;
+  --listbackground-color: #f8f5ec;
+  --ptext-color: #494949;
+  --footertext-color: #494949;
+  --errortext-color: #ee6055;
+  --signinbtn-color: #494444;
+  --signinhover-color:#49444467;
+  --signupbtn-color: rgb(0, 98, 255);
+  --signuphover-color: rgba(0, 98, 255, 0.384);
+  
 }
 
 #__next {

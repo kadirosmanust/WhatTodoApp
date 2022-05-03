@@ -6,7 +6,7 @@
   flex-direction: row;
   height: 3em;
   border-radius: 0.3px;
-  background-color: #f7f6f3;
+  background-color: var(--headerbackground-color);
 }
 .nav {
   display: flex;
@@ -17,7 +17,7 @@
 }
 .nav div {
   margin-right: 1em;
-  color: #a19f9a;
+  color: var(--headertext-color);
 }
 
 .logo {
@@ -27,7 +27,7 @@
   align-items: center;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
-  color: #242424;
+  color: var(--headerlogo-color);
   position: absolute;
   cursor: pointer;
 }
@@ -44,7 +44,7 @@
   cursor: pointer;
 }
 .logout:hover {
-  background-color: #e8e7e4;
+  background-color: var(--headerhover-color);
   border-radius: 5px;
 }
 .profile {
@@ -55,7 +55,7 @@
   cursor: pointer;
 }
 .profile:hover {
-  background-color: #e8e7e4;
+  background-color: var(--headerhover-color);
   border-radius: 5px;
 }
 .header p {

@@ -40,15 +40,15 @@
   /* fix this*/
   font-size: 2.5rem;
   flex-grow: 1;
-  color: #494949;
+  color: var(--ptext-color);
   white-space: pre-wrap;
   word-break: break-word;
 }
 .delete {
-  background-color: #ee6055;
+  background-color: var(--button-color);
   padding: 0.5rem 1.7rem;
   border-radius: 4px;
-  color: #f2e8cf;
+  color: var(--buttontext-color);
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   margin-right: 3.5rem;
@@ -56,7 +56,7 @@
   transition: box-shadow 0.2s ease-in-out;
 }
 .delete:hover {
-  box-shadow: #ee6055 0px 2px 7px;
+  box-shadow: var(--button-color) 0px 2px 7px;
 }
 
 .detailbody {
@@ -101,7 +101,6 @@
   .title h1 {
     font-size: 2rem;
     flex-grow: 1;
-    color: #494949;
   }
   .detailheader {
     display: flex;
@@ -115,7 +114,6 @@
   }
 
   .delete {
-    background-color: rgba(255, 38, 67, 0.753);
     height: 2rem;
     display: flex;
     justify-content: center;
