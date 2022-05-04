@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import styles from './Notes.module.css';
 import NoteDetail from '../NoteDetail/NoteDetail';
 import { useAppSelector } from '../../store/store';

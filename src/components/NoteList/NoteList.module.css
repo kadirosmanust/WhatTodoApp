@@ -6,14 +6,14 @@
   justify-content: center;
   align-items: center;
   border-radius: 0.3px;
-  background-color: #f8f5ec;
+  background-color: var(--listbackground-color);
   border-top: 0.1px solid rgba(0, 0, 0, 0.2);
   flex-shrink: 0;
 }
 .list p {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  color: #494949;
+  color: var(--ptext-color);
 }
 .ul {
   list-style: none;
@@ -31,7 +31,7 @@
   box-sizing: border-box;
   width: 100%;
   align-self: center;
-  color: #c1c1c1;
+  color: var(--listitemtext-color);
   padding: 0.1em;
   padding-left: 0.5em;
   cursor: pointer;
@@ -40,14 +40,14 @@
   overflow: hidden;
 }
 .ul li:hover {
-  background-color: #e8e7e4;
-  color: #1b1b1b;
+  background-color: var(--listitemhover-color);
+  color: var(--listitemtexthover-color);
 }
 .create {
-  background-color: #ee6055;
+  background-color: var(--button-color);
   padding: 0.3rem 1rem;
   border-radius: 4px;
-  color: #f2e8cf;
+  color: var(--buttontext-color);
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -56,7 +56,7 @@
   transition: box-shadow 0.2s ease-in-out;
 }
 .create:hover {
-  box-shadow: #ee6055 0px 2px 7px;
+  box-shadow: var(--button-color) 0px 2px 7px;
 }
 .darkmodal {
   position: absolute;
@@ -81,7 +81,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 0.3px;
-    background-color: #f8f5ec;
+    background-color: var(--listbackground-color);
     border-top: 0.1px solid rgba(0, 0, 0, 0.2);
     z-index: 2;
     flex-shrink: 0;

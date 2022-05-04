@@ -1,4 +1,4 @@
-import Image from 'next/image';
+
 import React, { useEffect, useState } from 'react';
 import { deleteNote } from '../../store/reducers/Notes/noteSlice';
 import { useAppDispatch } from '../../store/store';

@@ -5,6 +5,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  color: var(--ptext-color);
 }
 .loading {
   font-family: 'Poppins', sans-serif;
@@ -70,14 +71,14 @@
 }
 .floatingmenu {
   display: flex;
-  background-color: #0d0d0d10;
+  background-color: var(--button-color);
   padding: 0.2rem;
   border-radius: 0.5rem;
 }
 .floatingmenu button {
   border: none;
   font-family: 'Poppins', sans-serif;
-  color: #0d0d0d;
+  color: var(--ptext-color);
   background: none;
   font-size: 0.85rem;
   font-weight: 500;

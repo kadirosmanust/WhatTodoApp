@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { httpGet } from '../src/utils/helpers/httpHelper';
 import { login } from '../src/store/reducers/Auth/authSlice';
 import { AxiosResponse } from 'axios';
+import { setdark } from '../src/store/reducers/Theme/themeSlice';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [Loading, setLoading] = useState(false);
@@ -16,6 +17,17 @@ function MyApp({ Component, pageProps }: AppProps) {
       )) as AxiosResponse;
 
       const { isLogged: isLogin, username } = response.data;
+      if (isLogin) {
+        const isDark = document.cookie.split(';')[1].split('=')[1];
+        if (isDark === 'true') {
+          store.dispatch(setdark());
+        }
+      } else {
+        const isDark = document.cookie.split('=')[1];
+        if (isDark === 'true') {
+          store.dispatch(setdark());
+        }
+      }
 
       store.dispatch(login({ isLogin, username }));
       setLoading(true);

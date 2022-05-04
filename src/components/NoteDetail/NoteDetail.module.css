@@ -40,15 +40,15 @@
   /* fix this*/
   font-size: 2.5rem;
   flex-grow: 1;
-  color: #494949;
+  color: var(--ptext-color);
   white-space: pre-wrap;
   word-break: break-word;
 }
 .delete {
-  background-color: #ee6055;
+  background-color: var(--button-color);
   padding: 0.5rem 1.7rem;
   border-radius: 4px;
-  color: #f2e8cf;
+  color: var(--buttontext-color);
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   margin-right: 3.5rem;
@@ -56,7 +56,7 @@
   transition: box-shadow 0.2s ease-in-out;
 }
 .delete:hover {
-  box-shadow: #ee6055 0px 2px 7px;
+  box-shadow: var(--button-color) 0px 2px 7px;
 }
 
 .detailbody {
@@ -81,16 +81,21 @@
     width: 100%;
   }
   .img {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     height: 200px;
     overflow: hidden;
-    z-index: 0;
+    width: 100%;
   }
   .img img {
-    position: relative;
+    display: block;
     object-fit: cover;
-    max-width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
+    padding: 0;
+    width: 100%;
+    height: 200px;
+    object-position: center 40%;
+    user-select: none;
   }
   .title {
     padding: 0;
@@ -101,7 +106,6 @@
   .title h1 {
     font-size: 2rem;
     flex-grow: 1;
-    color: #494949;
   }
   .detailheader {
     display: flex;
@@ -115,7 +119,6 @@
   }
 
   .delete {
-    background-color: rgba(255, 38, 67, 0.753);
     height: 2rem;
     display: flex;
     justify-content: center;
