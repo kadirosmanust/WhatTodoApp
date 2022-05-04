@@ -2,12 +2,13 @@
 import Link from 'next/link';
 import Router from 'next/router';
 import { useEffect } from 'react';
+import DarkThemeToggle from '../../src/components/DarkThemeToggle/DarkThemeToggle';
 import SignInUp from '../../src/components/UI/SignInUp';
 import { useAppSelector } from '../../src/store/store';
 import styles from './index.module.css';
 
 const Welcome = () => {
-  const { isLogin, username } = useAppSelector((state) => state.auth);
+  const { isLogin } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     if (!isLogin) {
@@ -35,6 +36,9 @@ const Welcome = () => {
           <a className={styles.btn}> Let's Start</a>
         </Link>
       )}
+      <div className={styles.toggle}>
+        <DarkThemeToggle />
+      </div>
     </div>
   );
 };

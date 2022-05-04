@@ -62,9 +62,69 @@
   padding: 0;
   margin: 0;
 }
+
+.label {
+  background-color: #111;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  height: 1.4rem;
+  width: 2.8rem;
+  transform: scale(1.5);
+}
+.label .ball {
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 0px;
+  left: -1px;
+  height: 1.4rem;
+  width: 1.4rem;
+  transform: translateX(0px);
+  transition: transform 0.2s linear;
+}
+.checkbox:checked + .label .ball {
+  transform: translateX(1.5rem);
+}
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.moon {
+  color: #f1c40f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.moon svg {
+  width: 1em;
+  height: 1em;
+}
+
+.sun {
+  color: #f39c12;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sun svg {
+  width: 1em;
+  height: 1em;
+}
+
 @media screen and (max-width: 600px) {
   .header p {
     display: none;
+  }
+  .toggle {
+    position: absolute;
+    bottom: 1.5rem;
+    right: -0.5rem;
   }
   .icon {
     margin: 0;

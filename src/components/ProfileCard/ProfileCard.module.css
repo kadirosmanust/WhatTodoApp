@@ -1,5 +1,5 @@
 .card {
-  background-color: var(--background-color);
+  background-color: var(--modalbackground-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,9 +7,14 @@
   width: 40%;
   height: 50%;
   border-radius: 20px;
-  box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 12px 3px rgba(131, 131, 131, 0.349);
 
   font-family: 'Poppins', sans-serif;
+}
+.toggle {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
 }
 .header {
   display: flex;
@@ -54,6 +59,7 @@
   padding-bottom: 1rem;
   font-size: 0.8rem;
   font-weight: 600;
+  color: var(--ptext-color);
 }
 @media screen and (max-width: 800px) {
   .card {

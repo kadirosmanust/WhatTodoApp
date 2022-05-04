@@ -9,6 +9,8 @@
   margin-top: 0.6rem;
   position: absolute;
   top: 0;
+  color: var(--headertext-color);
+
   display: flex;
   justify-content: center;
   align-items: center;

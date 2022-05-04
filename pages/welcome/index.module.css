@@ -5,10 +5,16 @@
   flex-direction: column;
   height: 100vh;
 }
+.toggle {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
 .black {
   font-family: 'Poppins', sans-serif;
   font-weight: 900;
   font-size: 4em;
+  color: var(--welcomehead-color);
 }
 .paragraph {
   font-family: 'Poppins', sans-serif;
@@ -16,12 +22,14 @@
   font-size: 1.4em;
   text-align: center;
   max-width: 60%;
+  color: var(--ptext-color);
 }
 .credit {
   margin-top: 1.4em;
   text-align: center;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
+  color: var(--ptext-color);
 }
 .link {
   border-bottom: 1px solid black;

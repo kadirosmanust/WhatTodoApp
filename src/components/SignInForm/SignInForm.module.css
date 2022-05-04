@@ -3,11 +3,17 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.2);
+  background-color: var(--signinbackground-color);
+  box-shadow: 0px 0px 12px 3px rgba(70, 70, 70, 0.2);
   border-radius: 10px;
   padding-top: 25px;
   padding-bottom: 25px;
   width: 350px;
+}
+.toggle {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
 }
 .form {
   display: flex;
@@ -27,10 +33,12 @@
   font-weight: 400;
   margin-top: 1em;
   margin-bottom: 0.5em;
+  color: var(--modaltext-color);
 }
 .input {
   border: 2px solid transparent;
   border-bottom: 2px solid var(--modaltext-color);
+  color: var(--modaltext-color);
   background-color: transparent;
   padding: 0.4em;
 }
@@ -50,6 +58,7 @@
   border: 2px solid transparent;
   border-bottom: 2px solid var(--modaltext-color);
   display: flex;
+  color: var(--modaltext-color);
   justify-content: center;
   align-items: center;
   width: 150px;

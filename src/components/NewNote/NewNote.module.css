@@ -28,6 +28,8 @@
   padding: 0.5rem;
   border-radius: 4px;
   background-color: var(--modalbackground-color);
+  color: var(--modaltext-color);
+
   border: none;
   border-bottom: 2px solid var(--modaltext-color);
   border-bottom-right-radius: 0;
@@ -90,6 +92,7 @@
   justify-content: center;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
+  color: var(--modaltext-color);
 }
 .exitbtn:hover {
   background-color: var(--button-color);

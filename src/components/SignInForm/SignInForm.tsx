@@ -6,6 +6,7 @@ import Router from 'next/router';
 import store from '../../store/store';
 import { login } from '../../store/reducers/Auth/authSlice';
 import { useForm } from 'react-hook-form';
+import DarkThemeToggle from '../DarkThemeToggle/DarkThemeToggle';
 type User = {
   username: string;
   password: string;
@@ -104,6 +105,9 @@ const SignInForm = () => {
           </button>
         </form>
         <div className={styles.pnote}> Powerful note app.</div>
+      </div>
+      <div className={styles.toggle}>
+        <DarkThemeToggle />
       </div>
     </>
   );
