@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
 import MainNavigator from '../src/components/layout/MainNavigator';
@@ -27,6 +28,11 @@ const Home = () => {
     <>
       {isLogin && (
         <>
+          <Head>
+            <title>WhatTodo</title>
+            <meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />
+            <meta httpEquiv='Content-Language' content='en' />
+          </Head>
           {creating && <NewNote exitHandler={createNoteHandler} />}
 
           <MainNavigator />
