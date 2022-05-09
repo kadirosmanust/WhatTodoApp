@@ -26,6 +26,8 @@ const SignInForm = () => {
   };
 
   const submitHandler = handleSubmit(async ({ username, password }) => {
+    setButtonText('Wait...');
+
     const hashedPassword = hash(password);
 
     const user = {

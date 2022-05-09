@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
 import { useEffect } from 'react';
@@ -18,6 +19,11 @@ const Welcome = () => {
   }, [isLogin]);
   return (
     <div className={styles.center}>
+      <Head>
+        <title>Welcome WhatTodo!</title>
+        <meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />
+        <meta httpEquiv='Content-Language' content='en' />
+      </Head>
       <div className={styles.black}>WhatTodo</div>
       <div className={styles.paragraph}>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde ipsa

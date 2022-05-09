@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Router from 'next/router';
 import React, { useEffect } from 'react';
 import SignInForm from '../src/components/SignInForm/SignInForm';
@@ -22,6 +23,11 @@ const Signin = () => {
 
   return (
     <div className='center'>
+      <Head>
+        <title>Sign In</title>
+        <meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />
+        <meta httpEquiv='Content-Language' content='en' />
+      </Head>
       {!isLogin && <SignInForm />}
       {!isLogin && (
         <div className='nav'>
@@ -61,9 +67,7 @@ const Signin = () => {
             <p>Register</p>
           </div>
         </div>
-        
       )}
-      
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Router from 'next/router';
 import React, { useEffect } from 'react';
 import SignUpForm from '../src/components/SignUpForm/SignUpForm';
@@ -22,6 +23,11 @@ const SignUp = () => {
 
   return (
     <div className='center'>
+      <Head>
+        <title>Sign Up</title>
+        <meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />
+        <meta httpEquiv='Content-Language' content='en' />
+      </Head>
       {!isLogin && <SignUpForm />}
       {!isLogin && (
         <div className='nav'>
