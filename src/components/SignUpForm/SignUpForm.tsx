@@ -7,6 +7,7 @@ import store from '../../store/store';
 import { login } from '../../store/reducers/Auth/authSlice';
 import { useForm } from 'react-hook-form';
 import DarkThemeToggle from '../DarkThemeToggle/DarkThemeToggle';
+import { AxiosPromise, AxiosResponseHeaders } from 'axios';
 
 type User = {
   username: string;
@@ -21,6 +22,7 @@ const SignUpForm = () => {
     handleSubmit,
     formState: { errors },
     watch,
+    setError,
   } = useForm<User>({ mode: 'onTouched' });
   const password = useRef({});
   password.current = watch('password', '');
@@ -36,7 +38,17 @@ const SignUpForm = () => {
       password: hashedpass,
     };
     try {
-      await httpPost('/api/Auth/register', newUser);
+      const response: any = await httpPost('/api/Auth/register', newUser);
+
+      if (response.data.username) {
+        setError('username', {
+          type: 'custom',
+          message: 'Username already exists',
+        });
+        setButtonText('Register');
+
+        return;
+      }
       store.dispatch(login({ isLogin: true, username: newUser.username }));
       setButtonText('Success!');
       Router.push('/home');

@@ -26,8 +26,18 @@ export default async function handler(
     const db = client.db(process.env.MONGO_DB_DATABASENAME);
 
     const collection = db.collection('Users');
+
+    const user = await collection.findOne({
+      username: username,
+    });
+
+    if (user) {
+      res.status(200).json({ username: username } as any);
+      return;
+    }
+
     const notes: Note[] = [
-      { title: `Hello ${username}`, note: 'Have fun.', id: v4() },
+      { title: `Hello ${username}`, note: 'Have fun.', id: v4(), url: '' },
     ];
 
     const result = (await collection.insertOne({
