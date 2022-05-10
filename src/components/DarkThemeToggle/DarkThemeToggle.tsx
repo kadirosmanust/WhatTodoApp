@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import styles from './DarkThemeToggle.module.css';
+
 import { setdark, setlight } from '../../store/reducers/Theme/themeSlice';
 import store, { useAppSelector } from '../../store/store';
+
+import styles from './DarkThemeToggle.module.css';
 
 const DarkThemeToggle = () => {
   const { isDark } = useAppSelector((state) => state.theme);

@@ -1,5 +1,6 @@
 import Router from 'next/router';
 import { useEffect } from 'react';
+
 import { useAppSelector } from '../src/store/store';
 
 const Home = () => {

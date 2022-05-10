@@ -4,15 +4,15 @@ import {
   EditorContent,
   BubbleMenu,
   FloatingMenu,
-  
 } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import TaskList from '@tiptap/extension-task-list';
 import TaskItem from '@tiptap/extension-task-item';
+import { debounce } from 'lodash';
+
 import type { Note } from '../../types/types';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { updateNotes, getNotes } from '../../store/reducers/Notes/noteSlice';
-import { debounce } from 'lodash';
 
 import styles from './TextEditor.module.css';
 

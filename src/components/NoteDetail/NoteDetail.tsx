@@ -1,5 +1,5 @@
-
 import React, { useEffect, useState } from 'react';
+
 import { deleteNote } from '../../store/reducers/Notes/noteSlice';
 import { useAppDispatch } from '../../store/store';
 import Footer from '../layout/Footer';

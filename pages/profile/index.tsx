@@ -1,5 +1,6 @@
 import Router from 'next/router';
 import React, { useEffect } from 'react';
+
 import ProfileCard from '../../src/components/ProfileCard/ProfileCard';
 import { useAppSelector } from '../../src/store/store';
 

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import styles from './SignInForm.module.css';
+import { useForm } from 'react-hook-form';
+import Router from 'next/router';
+
 import { httpPost } from '../../utils/helpers/httpHelper';
 import hash from '../../utils/helpers/hashHelper';
-import Router from 'next/router';
 import store from '../../store/store';
 import { login } from '../../store/reducers/Auth/authSlice';
-import { useForm } from 'react-hook-form';
 import DarkThemeToggle from '../DarkThemeToggle/DarkThemeToggle';
+
+import styles from './SignInForm.module.css';
+
 type User = {
   username: string;
   password: string;

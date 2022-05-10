@@ -1,12 +1,14 @@
-import '../src/styles/globals.css';
 import type { AppProps } from 'next/app';
-import store from '../src/store/store';
 import { Provider } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { httpGet } from '../src/utils/helpers/httpHelper';
-import { login } from '../src/store/reducers/Auth/authSlice';
 import { AxiosResponse } from 'axios';
+
+import { httpGet } from '../src/utils/helpers/httpHelper';
+import store from '../src/store/store';
+import { login } from '../src/store/reducers/Auth/authSlice';
 import { setdark } from '../src/store/reducers/Theme/themeSlice';
+
+import '../src/styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [Loading, setLoading] = useState(false);
@@ -18,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       const { isLogged: isLogin, username } = response.data;
       if (isLogin) {
-        const isDark = document.cookie.split(';')[1].split('=')[1];
+        const isDark = document.cookie.split(';')[1]?.split('=')[1];
         if (isDark === 'true') {
           store.dispatch(setdark());
         }

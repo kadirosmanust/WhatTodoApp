@@ -1,13 +1,12 @@
 import React, { useRef, useState } from 'react';
-import styles from './SignUpForm.module.css';
+import Router from 'next/router';
+import { useForm } from 'react-hook-form';
+
 import { httpPost } from '../../utils/helpers/httpHelper';
 import hash from '../../utils/helpers/hashHelper';
-import Router from 'next/router';
-import store from '../../store/store';
-import { login } from '../../store/reducers/Auth/authSlice';
-import { useForm } from 'react-hook-form';
 import DarkThemeToggle from '../DarkThemeToggle/DarkThemeToggle';
-import { AxiosPromise, AxiosResponseHeaders } from 'axios';
+
+import styles from './SignUpForm.module.css';
 
 type User = {
   username: string;
@@ -49,8 +48,8 @@ const SignUpForm = () => {
 
         return;
       }
-      store.dispatch(login({ isLogin: true, username: newUser.username }));
       setButtonText('Success!');
+      // TODO: Lütfen epostanızı kontrol edin oluşturun.
       Router.push('/home');
     } catch (error) {
       setButtonText('Try Again!');

@@ -1,0 +1,22 @@
+.paragraph {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1em;
+  text-align: center;
+  max-width: 60%;
+  color: var(--ptext-color);
+}
+.btn {
+  font-family: 'Poppins', sans-serif;
+  margin-top: 1em;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 1.3em;
+  width: 150px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  color: rgb(0, 0, 0);
+}
