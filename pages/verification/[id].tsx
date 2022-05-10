@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Link from 'next/link';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { login } from '../../src/store/reducers/Auth/authSlice';
 import store from '../../src/store/store';
@@ -27,21 +27,16 @@ const Verification = () => {
       }
     };
     verifAcc();
-  }, []);
-
-  const clickHandler = () => {
-    Router.push('/home');
-  };
+  }, [id]);
 
   return (
     <>
       {message && (
         <div className='center'>
           <p className={styles.paragraph}>{message}</p>
-
-          <a className={styles.btn} onClick={clickHandler}>
-            Start
-          </a>
+          <Link href={'/home'}>
+            <a className={styles.btn}>Start</a>
+          </Link>
         </div>
       )}
     </>

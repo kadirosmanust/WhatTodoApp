@@ -9,6 +9,7 @@ import { login } from '../src/store/reducers/Auth/authSlice';
 import { setdark } from '../src/store/reducers/Theme/themeSlice';
 
 import '../src/styles/globals.css';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [Loading, setLoading] = useState(false);
@@ -37,7 +38,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <Provider store={store}>{Loading && <Component {...pageProps} />}</Provider>
+    <>
+      <Head>
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <Provider store={store}>
+        {Loading && <Component {...pageProps} />}
+      </Provider>
+    </>
   );
 }
 

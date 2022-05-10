@@ -49,8 +49,7 @@ const SignUpForm = () => {
         return;
       }
       setButtonText('Success!');
-      // TODO: Lütfen epostanızı kontrol edin oluşturun.
-      Router.push('/home');
+      Router.push('/verification/info');
     } catch (error) {
       setButtonText('Try Again!');
     }
