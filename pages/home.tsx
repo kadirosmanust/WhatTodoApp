@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
+
 import MainNavigator from '../src/components/layout/MainNavigator';
 import NewNote from '../src/components/NewNote/NewNote';
 import Notes from '../src/components/Notes/Notes';

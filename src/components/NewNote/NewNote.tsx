@@ -1,10 +1,12 @@
 import React from 'react';
-import { createNote } from '../../store/reducers/Notes/noteSlice';
-import styles from './NewNote.module.css';
-import type { Note } from '../../types/types';
-import { v4 } from 'uuid';
-import { useAppDispatch } from '../../store/store';
 import { useForm } from 'react-hook-form';
+import { v4 } from 'uuid';
+
+import { createNote } from '../../store/reducers/Notes/noteSlice';
+import type { Note } from '../../types/types';
+import { useAppDispatch } from '../../store/store';
+
+import styles from './NewNote.module.css';
 
 type Props = { exitHandler: () => void };
 type NoteInput = {

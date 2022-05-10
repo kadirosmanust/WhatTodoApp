@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Router from 'next/router';
 import React, { useEffect } from 'react';
+
 import SignUpForm from '../src/components/SignUpForm/SignUpForm';
 import { useAppSelector } from '../src/store/store';
 

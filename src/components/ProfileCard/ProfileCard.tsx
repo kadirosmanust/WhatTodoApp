@@ -1,6 +1,8 @@
 import Router from 'next/router';
 import React from 'react';
+
 import DarkThemeToggle from '../DarkThemeToggle/DarkThemeToggle';
+
 import styles from './ProfileCard.module.css';
 
 type Props = { username: string };

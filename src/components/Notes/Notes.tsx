@@ -1,16 +1,17 @@
 /* eslint-disable react/jsx-key */
-import React, {  useState } from 'react';
-import styles from './Notes.module.css';
+import React, { useState } from 'react';
+
 import NoteDetail from '../NoteDetail/NoteDetail';
 import { useAppSelector } from '../../store/store';
 import { getNotes } from '../../store/reducers/Notes/noteSlice';
 import NoteList from '../NoteList/NoteList';
 import type { Note } from '../../types/types';
 
+import styles from './Notes.module.css';
+
 type Props = { createNoteHandler: () => void };
 
 const Notes = ({ createNoteHandler }: Props) => {
-
   const [isOpen, setIsOpen] = useState(false);
   const [note, setNote] = useState<Note>(null);
   const { data, error, pending } = useAppSelector(getNotes);
@@ -21,7 +22,6 @@ const Notes = ({ createNoteHandler }: Props) => {
     id: string,
     url: string
   ) => {
-   
     setNote({ id: id, note: content, title: title, url: url });
   };
   return (
