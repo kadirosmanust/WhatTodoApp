@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
-import { setdark, setlight } from '../../store/reducers/Theme/themeSlice';
-import store, { useAppSelector } from '../../store/store';
+import { setdark, setlight } from '@/store/reducers/Theme/themeSlice';
+import store, { useAppSelector } from '@/store/store';
 
 import styles from './DarkThemeToggle.module.css';
 

@@ -2,7 +2,7 @@
 import React from 'react';
 
 import NoteItem from '../NoteItem/NoteItem';
-import type { Note } from '../../types/types';
+import type { Note } from '@/types/types';
 import LoadingSpinner from '../UI/LoadingSpinner';
 
 import styles from './NoteList.module.css';

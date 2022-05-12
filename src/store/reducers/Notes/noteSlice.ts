@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
-import { RootState } from '../../store';
-import { httpPost } from '../../../utils/helpers/httpHelper';
-import type { Note } from '../../../types/types';
+import { RootState } from '@/store/store';
+import { httpPost } from '@/utils/helpers/httpHelper';
+import type { Note } from '@/types/types';
 
 export type NotesState = {
   data: { username: string; notes: Note[] };

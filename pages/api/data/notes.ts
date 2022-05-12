@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { checkToken } from '../../../src/utils/userAuthToken';
+import { checkToken } from '@/utils/userAuthToken';
 
 type Data = {
   name: string;

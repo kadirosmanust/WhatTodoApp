@@ -2,8 +2,8 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import SignInForm from '../../components/SignInForm/SignInForm';
-import store from '../../store/store';
+import SignInForm from '@/components/SignInForm/SignInForm';
+import store from '@/store/store';
 import { Provider } from 'react-redux';
 
 describe('SignIn Form', () => {

@@ -2,9 +2,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { v4 } from 'uuid';
 
-import { createNote } from '../../store/reducers/Notes/noteSlice';
-import type { Note } from '../../types/types';
-import { useAppDispatch } from '../../store/store';
+import { createNote } from '@/store/reducers/Notes/noteSlice';
+import type { Note } from '@/types/types';
+import { useAppDispatch } from '@/store/store';
 
 import styles from './NewNote.module.css';
 

@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 
 import NoteDetail from '../NoteDetail/NoteDetail';
-import { useAppSelector } from '../../store/store';
-import { getNotes } from '../../store/reducers/Notes/noteSlice';
+import { useAppSelector } from '@/store/store';
+import { getNotes } from '@/store/reducers/Notes/noteSlice';
 import NoteList from '../NoteList/NoteList';
-import type { Note } from '../../types/types';
+import type { Note } from '@/types/types';
 
 import styles from './Notes.module.css';
 

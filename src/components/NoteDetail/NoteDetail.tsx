@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import { deleteNote } from '../../store/reducers/Notes/noteSlice';
-import { useAppDispatch } from '../../store/store';
+import { deleteNote } from '@/store/reducers/Notes/noteSlice';
+import { useAppDispatch } from '@/store/store';
 import Footer from '../layout/Footer';
 import TextEditor from '../TextEditor/TextEditor';
-import type { Note } from '../../types/types';
+import type { Note } from '@/types/types';
 
 import styles from './NoteDetail.module.css';
 

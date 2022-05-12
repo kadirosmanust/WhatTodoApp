@@ -2,11 +2,11 @@ import Head from 'next/head';
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-import MainNavigator from '../src/components/layout/MainNavigator';
-import NewNote from '../src/components/NewNote/NewNote';
-import Notes from '../src/components/Notes/Notes';
-import { fetchNotes } from '../src/store/reducers/Notes/noteSlice';
-import { useAppDispatch, useAppSelector } from '../src/store/store';
+import MainNavigator from '@/components/layout/MainNavigator';
+import NewNote from '@/components/NewNote/NewNote';
+import Notes from '@/components/Notes/Notes';
+import { fetchNotes } from '@/store/reducers/Notes/noteSlice';
+import { useAppDispatch, useAppSelector } from '@/store/store';
 
 const Home = () => {
   const { isLogin, username } = useAppSelector((state) => state.auth);

@@ -10,9 +10,9 @@ import TaskList from '@tiptap/extension-task-list';
 import TaskItem from '@tiptap/extension-task-item';
 import { debounce } from 'lodash';
 
-import type { Note } from '../../types/types';
-import { useAppDispatch, useAppSelector } from '../../store/store';
-import { updateNotes, getNotes } from '../../store/reducers/Notes/noteSlice';
+import type { Note } from '@/types/types';
+import { useAppDispatch, useAppSelector } from '@/store/store';
+import { updateNotes, getNotes } from '@/store/reducers/Notes/noteSlice';
 
 import styles from './TextEditor.module.css';
 

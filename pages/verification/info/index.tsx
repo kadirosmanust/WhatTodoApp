@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Router from 'next/router';
 import { useEffect } from 'react';
-import { useAppSelector } from '../../../src/store/store';
+import { useAppSelector } from '@/store/store';
 
 import styles from '../Verification.module.css';
 

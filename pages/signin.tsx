@@ -2,8 +2,8 @@ import Head from 'next/head';
 import Router from 'next/router';
 import React, { useEffect } from 'react';
 
-import SignInForm from '../src/components/SignInForm/SignInForm';
-import { useAppSelector } from '../src/store/store';
+import SignInForm from '@/components/SignInForm/SignInForm';
+import { useAppSelector } from '@/store/store';
 
 const Signin = () => {
   const { isLogin } = useAppSelector((state) => state.auth);

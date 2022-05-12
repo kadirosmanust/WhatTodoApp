@@ -2,8 +2,8 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { login } from '../../src/store/reducers/Auth/authSlice';
-import store from '../../src/store/store';
+import { login } from '@/store/reducers/Auth/authSlice';
+import store from '@/store/store';
 
 import styles from './Verification.module.css';
 

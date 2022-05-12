@@ -2,8 +2,8 @@ import React, { useRef, useState } from 'react';
 import Router from 'next/router';
 import { useForm } from 'react-hook-form';
 
-import { httpPost } from '../../utils/helpers/httpHelper';
-import hash from '../../utils/helpers/hashHelper';
+import { httpPost } from '@/utils/helpers/httpHelper';
+import hash from '@/utils/helpers/hashHelper';
 import DarkThemeToggle from '../DarkThemeToggle/DarkThemeToggle';
 
 import styles from './SignUpForm.module.css';

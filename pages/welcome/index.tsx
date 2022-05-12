@@ -4,9 +4,9 @@ import Link from 'next/link';
 import Router from 'next/router';
 import { useEffect } from 'react';
 
-import DarkThemeToggle from '../../src/components/DarkThemeToggle/DarkThemeToggle';
-import SignInUp from '../../src/components/UI/SignInUp';
-import { useAppSelector } from '../../src/store/store';
+import DarkThemeToggle from '@/components/DarkThemeToggle/DarkThemeToggle';
+import SignInUp from '@/components/UI/SignInUp';
+import { useAppSelector } from '@/store/store';
 
 import styles from './index.module.css';
 

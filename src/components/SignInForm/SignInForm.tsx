@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
-import { httpPost } from '../../utils/helpers/httpHelper';
-import hash from '../../utils/helpers/hashHelper';
-import store from '../../store/store';
-import { login } from '../../store/reducers/Auth/authSlice';
+import { httpPost } from '@/utils/helpers/httpHelper';
+import hash from '@/utils/helpers/hashHelper';
+import store from '@/store/store';
+import { login } from '@/store/reducers/Auth/authSlice';
 import DarkThemeToggle from '../DarkThemeToggle/DarkThemeToggle';
 
 import styles from './SignInForm.module.css';
