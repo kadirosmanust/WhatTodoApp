@@ -52,7 +52,7 @@ const SignInForm = () => {
 
         return;
       }
-      if (!response.data.verified) {
+      if (!response.data.verified && response.data.message !== 'Success!') {
         setError('username', {
           type: 'custom',
           message: 'Check your e-mail box',

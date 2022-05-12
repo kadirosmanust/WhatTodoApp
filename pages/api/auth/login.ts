@@ -33,7 +33,13 @@ export default async function handler(
   });
 
   if (!user) {
-    res.status(200).json({ username: null, password: false } as any);
+    res
+      .status(200)
+      .json({
+        username: null,
+        password: false,
+        verified: user.verified,
+      } as any);
     return;
     //TODO: Throw error
   }
@@ -41,19 +47,17 @@ export default async function handler(
   const isUser = user.password === password;
 
   if (!isUser) {
-    res.status(200).json({ username: user.username, password: isUser } as any);
-    //TODO: Throw error
+    res
+      .status(200)
+      .json({
+        username: user.username,
+        password: isUser,
+        verified: user.verified,
+      } as any);
     return;
   }
 
-  if (!user.verified) {
-    res.status(200).json({
-      username: user.username,
-      password: isUser,
-      verified: user.verified,
-    } as any);
-    return;
-  }
+
 
   const token = await createToken(user.username);
   const serializer = serialize('token', token, {
