@@ -61,7 +61,7 @@ export default async function handler(
       notes: notes,
     })) as any;
 
-    mailHelper.sendMail({
+    await mailHelper.sendMail({
       to: email,
       subject: 'Please confirm your Email account',
       html: `Please verifie your account ${username}: 
