@@ -11,7 +11,7 @@ import styles from './MainNavigator.module.css';
 
 const MainNavigator = () => {
   const logOutClickHandler = () => {
-    httpGet('/api/Auth/logout');
+    httpGet('/api/auth/logout');
 
     store.dispatch(logout());
     Router.push('/');
