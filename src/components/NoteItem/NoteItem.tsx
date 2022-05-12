@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './NoteItem.module.css';
-
 import { ChevronRightIcon } from '@heroicons/react/solid';
+
+import styles from './NoteItem.module.css';
 
 type Props = {
   title: string;

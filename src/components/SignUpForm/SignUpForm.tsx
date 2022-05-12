@@ -1,11 +1,12 @@
 import React, { useRef, useState } from 'react';
-import styles from './SignUpForm.module.css';
-import { httpPost } from '../../utils/helpers/httpHelper';
-import hash from '../../utils/helpers/hashHelper';
 import Router from 'next/router';
-import store from '../../store/store';
-import { login } from '../../store/reducers/Auth/authSlice';
 import { useForm } from 'react-hook-form';
+
+import { httpPost } from '@/utils/helpers/httpHelper';
+import hash from '@/utils/helpers/hashHelper';
+import DarkThemeToggle from '../DarkThemeToggle/DarkThemeToggle';
+
+import styles from './SignUpForm.module.css';
 
 type User = {
   username: string;
@@ -20,6 +21,7 @@ const SignUpForm = () => {
     handleSubmit,
     formState: { errors },
     watch,
+    setError,
   } = useForm<User>({ mode: 'onTouched' });
   const password = useRef({});
   password.current = watch('password', '');
@@ -35,10 +37,19 @@ const SignUpForm = () => {
       password: hashedpass,
     };
     try {
-      await httpPost('/api/Auth/register', newUser);
-      store.dispatch(login({ isLogin: true, username: newUser.username }));
+      const response: any = await httpPost('/api/auth/register', newUser);
+
+      if (response.data.username) {
+        setError('username', {
+          type: 'custom',
+          message: 'Username already exists',
+        });
+        setButtonText('Register');
+
+        return;
+      }
       setButtonText('Success!');
-      Router.push('/home');
+      Router.push('/verification/info');
     } catch (error) {
       setButtonText('Try Again!');
     }
@@ -151,6 +162,9 @@ const SignUpForm = () => {
           </button>
         </form>
         <div className={styles.pnote}> Powerful note app.</div>
+      </div>
+      <div className={styles.toggle}>
+        <DarkThemeToggle />
       </div>
     </>
   );

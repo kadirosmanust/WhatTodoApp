@@ -1,5 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+
 import { checkToken } from '../../../src/utils/userAuthToken';
+
 type Data = {
   name: string;
 };

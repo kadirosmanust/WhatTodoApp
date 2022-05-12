@@ -2,51 +2,44 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { MongoClient } from 'mongodb';
 import { serialize } from 'cookie';
 
-import { createToken } from '../../../src/utils/userAuthToken';
+import { createToken } from '../../../../src/utils/userAuthToken';
 
 type Data = {
   name: string;
-};
-type LoginData = {
-  username: string;
-  password: string;
 };
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  if (req.method !== 'POST') {
-    return;
-  }
-
-  const { username, password }: LoginData = req.body;
+  const { id } = req.query;
 
   const client = await MongoClient.connect(
     `mongodb+srv://${process.env.MONGO_DB_USERNAME}:${process.env.MONGO_DB_PASSWORD}@cluster0.34tyh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
   );
   const db = client.db(process.env.MONGO_DB_DATABASENAME);
-  const collection = db.collection('Users');
+  const userCollection = db.collection('Users');
+  const authCollection = db.collection('Auths');
 
-  const user = await collection.findOne({
-    username: username,
+  const user = await authCollection.findOne({
+    token: id,
   });
 
   if (!user) {
-    res.status(200).json({ username: null, password: false } as any);
-    return;
-    //TODO: Throw error
-  }
-
-  const isUser = user.password === password;
-
-  if (!isUser) {
-    res.status(200).json({ username: user.username, password: isUser } as any);
-    //TODO: Throw error
+    res.status(200).json({ message: 'Invalid adress.' } as any);
     return;
   }
 
-  const token = await createToken(user.username);
+  const username = user.username;
+
+  userCollection.updateOne(
+    { username: username },
+    { $set: { verified: true } }
+  );
+
+  authCollection.deleteOne({ token: id });
+
+  const token = await createToken(username);
   const serializer = serialize('token', token, {
     httpOnly: false,
     sameSite: 'strict',
@@ -55,5 +48,7 @@ export default async function handler(
   });
 
   res.setHeader('Set-Cookie', serializer);
-  res.status(200).json({ message: 'Success!' } as any);
+  res
+    .status(200)
+    .json({ message: 'User is verified.', username: username } as any);
 }

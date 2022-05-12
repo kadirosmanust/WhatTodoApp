@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import styles from './SignInForm.module.css';
-import { httpPost } from '../../utils/helpers/httpHelper';
-import hash from '../../utils/helpers/hashHelper';
-import Router from 'next/router';
-import store from '../../store/store';
-import { login } from '../../store/reducers/Auth/authSlice';
 import { useForm } from 'react-hook-form';
+import Router from 'next/router';
+
+import { httpPost } from '@/utils/helpers/httpHelper';
+import hash from '@/utils/helpers/hashHelper';
+import store from '@/store/store';
+import { login } from '@/store/reducers/Auth/authSlice';
+import DarkThemeToggle from '../DarkThemeToggle/DarkThemeToggle';
+
+import styles from './SignInForm.module.css';
+
 type User = {
   username: string;
   password: string;
@@ -25,6 +29,8 @@ const SignInForm = () => {
   };
 
   const submitHandler = handleSubmit(async ({ username, password }) => {
+    setButtonText('Wait...');
+
     const hashedPassword = hash(password);
 
     const user = {
@@ -33,7 +39,7 @@ const SignInForm = () => {
     };
 
     try {
-      const response = (await httpPost('api/Auth/login', user)) as any;
+      const response = (await httpPost('api/auth/login', user)) as any;
       if (!response.data.username && response.data.message !== 'Success!') {
         setError('username', { type: 'custom', message: 'User not found!' });
         setButtonText('Login.');
@@ -104,6 +110,9 @@ const SignInForm = () => {
           </button>
         </form>
         <div className={styles.pnote}> Powerful note app.</div>
+      </div>
+      <div className={styles.toggle}>
+        <DarkThemeToggle />
       </div>
     </>
   );

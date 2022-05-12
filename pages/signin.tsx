@@ -1,7 +1,9 @@
+import Head from 'next/head';
 import Router from 'next/router';
 import React, { useEffect } from 'react';
-import SignInForm from '../src/components/SignInForm/SignInForm';
-import { useAppSelector } from '../src/store/store';
+
+import SignInForm from '@/components/SignInForm/SignInForm';
+import { useAppSelector } from '@/store/store';
 
 const Signin = () => {
   const { isLogin } = useAppSelector((state) => state.auth);
@@ -22,6 +24,11 @@ const Signin = () => {
 
   return (
     <div className='center'>
+      <Head>
+        <title>Sign In</title>
+        <meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />
+        <meta httpEquiv='Content-Language' content='en' />
+      </Head>
       {!isLogin && <SignInForm />}
       {!isLogin && (
         <div className='nav'>

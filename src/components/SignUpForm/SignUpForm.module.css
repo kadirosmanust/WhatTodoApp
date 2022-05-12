@@ -3,7 +3,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 2px solid black;
+  background-color: var(--signinbackground-color);
+
+  box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   padding-top: 25px;
   padding-bottom: 25px;
@@ -16,25 +18,35 @@
   flex-direction: column;
   width: 300px;
 }
+.toggle {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
 .head {
   font-family: 'Poppins', sans-serif;
   font-weight: 900;
   font-size: 2em;
+  color: var(--modaltext-color);
 }
 .label {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   margin-top: 1em;
   margin-bottom: 0.5em;
+  color: var(--modaltext-color);
 }
 .input {
   border: 2px solid transparent;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--modaltext-color);
+  color: var(--modaltext-color);
+  background-color: transparent;
+
   padding: 0.4em;
 }
 .input:focus {
   outline: none;
-  border-bottom: 2px solid red;
+  border-bottom: 2px solid var(--modaltext-color);
 }
 .input:focus::placeholder {
   color: transparent;
@@ -45,7 +57,9 @@
   padding: 5px;
   border: 0px;
   border: 2px solid transparent;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--modaltext-color);
+  color: var(--modaltext-color);
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +68,7 @@
   cursor: pointer;
 }
 .button:hover {
-  border: 2px solid black;
+  border: 2px solid var(--modaltext-color);
 }
 .svg {
   margin-left: -10px;
@@ -68,19 +82,14 @@
   color: #3a3a3a;
   margin-bottom: 0.5em;
 }
-.valid {
-  border-bottom: 2px solid greenyellow;
-}
-.reject {
-  border: 2px solid red;
-}
+
 .error {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 0.8rem;
   margin-top: 0.2rem;
   margin-bottom: 0.5em;
-  color: rgb(255, 80, 80);
+  color: var(--errortext-color);
 }
 @media screen and (max-width: 500px) {
   .main {
@@ -88,7 +97,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: 2px solid black;
     border-radius: 10px;
     padding-top: 25px;
     padding-bottom: 25px;

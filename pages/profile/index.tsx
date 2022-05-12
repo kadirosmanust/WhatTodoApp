@@ -1,7 +1,8 @@
 import Router from 'next/router';
 import React, { useEffect } from 'react';
-import ProfileCard from '../../src/components/ProfileCard/ProfileCard';
-import { useAppSelector } from '../../src/store/store';
+
+import ProfileCard from '@/components/ProfileCard/ProfileCard';
+import { useAppSelector } from '@/store/store';
 
 const UserProfile = () => {
   const { isLogin, username } = useAppSelector((state) => state.auth);

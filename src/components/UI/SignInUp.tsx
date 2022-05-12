@@ -1,6 +1,7 @@
 import React from 'react';
-import styles from './SignInUp.module.css';
 import Link from 'next/link';
+
+import styles from './SignInUp.module.css';
 
 const SignInUp = () => {
   return (

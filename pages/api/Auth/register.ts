@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { MongoClient } from 'mongodb';
-import { createToken } from '../../../src/utils/userAuthToken';
-import { serialize } from 'cookie';
-import type { User, Note } from '../../../src/types/types';
 import { v4 } from 'uuid';
+
+import type { User, Note } from '../../../src/types/types';
+import mailHelper from '../../../src/utils/helpers/mailHelper';
 
 type Data = {
   name: string;
@@ -25,27 +25,49 @@ export default async function handler(
     );
     const db = client.db(process.env.MONGO_DB_DATABASENAME);
 
-    const collection = db.collection('Users');
+    const userCollection = db.collection('Users');
+    const authCollection = db.collection('Auths');
+
+    const user = await userCollection.findOne({
+      username: username,
+    });
+
+    if (user) {
+      res.status(200).json({ username: username } as any);
+      return;
+    }
+
+    const authuuID = v4();
+    authCollection.createIndex(
+      { createdAt: 1 },
+      { expireAfterSeconds: 86400000 }
+    );
+    authCollection.insertOne({
+      createdAt: new Date(),
+      token: authuuID,
+      username: username,
+    });
+
     const notes: Note[] = [
-      { title: `Hello ${username}`, note: 'Have fun.', id: v4() },
+      { title: `Hello ${username}`, note: 'Have fun.', id: v4(), url: '' },
     ];
 
-    const result = (await collection.insertOne({
+    const result = (await userCollection.insertOne({
       username: username,
       email: email,
+      verified: false,
+      passwordReset: false,
       password: password,
       notes: notes,
     })) as any;
 
-    const token = await createToken(username);
-    const serializer = serialize('token', token, {
-      httpOnly: false,
-      sameSite: 'strict',
-      path: '/',
-      maxAge: 60 * 60 * 24 * 7,
+    mailHelper.sendMail({
+      to: email,
+      subject: 'Please confirm your Email account',
+      html: `Please verifie your account ${username}: 
+      <a href='http://localhost:3000/verification/${authuuID}'>Click Here</a>
+      `,
     });
-
-    res.setHeader('Set-Cookie', serializer);
 
     res.status(200).json({ message: 'Success!' } as any);
   } catch (error) {

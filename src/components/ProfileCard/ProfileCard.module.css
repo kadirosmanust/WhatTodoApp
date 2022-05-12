@@ -1,5 +1,5 @@
 .card {
-  background-color: #fff;
+  background-color: var(--modalbackground-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,9 +7,14 @@
   width: 40%;
   height: 50%;
   border-radius: 20px;
-  box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 12px 3px rgba(131, 131, 131, 0.349);
 
   font-family: 'Poppins', sans-serif;
+}
+.toggle {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
 }
 .header {
   display: flex;
@@ -23,7 +28,7 @@
 }
 .header h1 {
   font-size: 2rem;
-  color: #494949;
+  color: var(--ptext-color);
 }
 .body {
   display: flex;
@@ -35,29 +40,29 @@
   padding-top: 2rem;
   padding-right: 3rem;
   padding-bottom: 3rem;
-  color: #494949;
+  color: var(--ptext-color);
 }
 .btn {
   border-radius: 5px;
   padding: 0.4rem;
   padding-left: 0.9rem;
   padding-right: 0.9rem;
-  background-color: #ee6055;
+  background-color: var(--button-color);
   transition: all 0.2s ease-in-out;
-  color: #fff;
+  color: var(--buttontext-color);
   cursor: pointer;
 }
 .btn:hover {
-  box-shadow: #ee6055 0px 2px 7px;
+  box-shadow: var(--button-color) 0px 2px 7px;
 }
 .footer {
   padding-bottom: 1rem;
   font-size: 0.8rem;
   font-weight: 600;
+  color: var(--ptext-color);
 }
 @media screen and (max-width: 800px) {
   .card {
-    background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -92,13 +97,10 @@
     padding: 1rem 2rem 1rem 2rem;
   }
   .btn {
-    border: 1px solid rgb(255, 47, 47);
     border-radius: 5px;
     padding: 0.4rem;
     padding-left: 0.8rem;
     padding-right: 0.8rem;
-    background-color: rgba(241, 78, 78, 0.897);
-    color: #fff;
     cursor: pointer;
   }
   .footer {

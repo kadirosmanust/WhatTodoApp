@@ -1,5 +1,6 @@
 .signIn {
-  border: 1px solid rgba(0, 0, 0, 0.349);
+  border: 1px solid var(--signinbtn-color);
+  color: var(--signinbtn-color);
   border-radius: 5px;
   height: 1.3em;
   width: 200px;
@@ -13,26 +14,26 @@
   font-weight: 400;
 }
 .signIn:hover {
-  box-shadow: rgba(0, 23, 59, 0.152) 0px 4px 14px;
+  box-shadow: var(--signinhover-color) 0px 4px 14px;
 }
 .signUp {
-  border: 1px solid rgb(0, 77, 201);
+  border: 1px solid var(--signupbtn-color);
   border-radius: 5px;
   height: 1.3em;
   width: 200px;
   padding: 20px;
-  background-color: rgb(0, 98, 255);
+  background-color: var(--signupbtn-color);
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: 10px;
-  color: white;
+  color: var(--signupbtntext-color);
   transition: box-shadow 0.4s ease-in-out;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
 }
 .signUp:hover {
-  box-shadow: rgba(0, 98, 255, 0.75) 3px 8px 18px;
+  box-shadow: var(--signuphover-color) 3px 8px 18px;
 }
 .center {
   display: flex;
@@ -43,21 +44,17 @@
 }
 @media screen and (max-width: 500px) {
   .signUp {
-    border: 1px solid rgb(0, 77, 201);
     border-radius: 5px;
     height: 1.3em;
     width: 300px;
     padding: 20px;
-    background-color: rgb(0, 98, 255);
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 10px;
-    color: white;
     transition: box-shadow 0.4s ease-in-out;
   }
   .signIn {
-    border: 1px solid rgba(0, 0, 0, 0.349);
     border-radius: 5px;
     height: 1.3em;
     width: 300px;
