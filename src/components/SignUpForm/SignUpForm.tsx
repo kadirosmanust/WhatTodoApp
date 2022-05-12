@@ -37,7 +37,7 @@ const SignUpForm = () => {
       password: hashedpass,
     };
     try {
-      const response: any = await httpPost('/api/Auth/register', newUser);
+      const response: any = await httpPost('/api/auth/register', newUser);
 
       if (response.data.username) {
         setError('username', {

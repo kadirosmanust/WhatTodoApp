@@ -14,7 +14,7 @@ const Verification = () => {
   const [message, setMessage] = useState('');
   useEffect(() => {
     const verifAcc = async () => {
-      const response: any = await axios.get(`/api/Auth/userVerification/${id}`);
+      const response: any = await axios.get(`/api/auth/userVerification/${id}`);
       const responseMessage = response.data.message;
 
       if (responseMessage === 'Invalid adress.') {

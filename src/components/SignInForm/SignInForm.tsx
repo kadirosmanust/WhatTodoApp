@@ -39,7 +39,7 @@ const SignInForm = () => {
     };
 
     try {
-      const response = (await httpPost('api/Auth/login', user)) as any;
+      const response = (await httpPost('api/auth/login', user)) as any;
       if (!response.data.username && response.data.message !== 'Success!') {
         setError('username', { type: 'custom', message: 'User not found!' });
         setButtonText('Login.');
