@@ -31,7 +31,7 @@ axios.interceptors.response.use(
   },
   function (error) {
     if (error.response.status === 401) {
-      Router.replace('http://localhost:3000/welcome');
+      Router.replace('https://what-todo-app.vercel.app/welcome');
       return Promise.reject(error);
     }
     return Promise.reject(error);
@@ -39,9 +39,9 @@ axios.interceptors.response.use(
 );
 
 export const httpGet = <T>(url: string): Promise<T> => {
-  return axios.get('http://localhost:3000/' + url);
+  return axios.get('https://what-todo-app.vercel.app/' + url);
 };
 
 export const httpPost = <T>(url: string, body: any): Promise<T> => {
-  return axios.post('http://localhost:3000/' + url, body);
+  return axios.post('https://what-todo-app.vercel.app/' + url, body);
 };

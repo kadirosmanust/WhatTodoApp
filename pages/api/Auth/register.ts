@@ -65,7 +65,7 @@ export default async function handler(
       to: email,
       subject: 'Please confirm your Email account',
       html: `Please verifie your account ${username}: 
-      <a href='http://localhost:3000/verification/${authuuID}'>Click Here</a>
+      <a href='https://what-todo-app.vercel.app/verification/${authuuID}'>Click Here</a>
       `,
     });
 
