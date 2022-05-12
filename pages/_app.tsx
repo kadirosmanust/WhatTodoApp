@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     (async () => {
       const response = (await httpGet(
-        '/api/auth/checkuserindex'
+        'api/auth/checkuserindex'
       )) as AxiosResponse;
 
       const { isLogged: isLogin, username } = response.data;
