@@ -9,8 +9,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const serializer = serialize('token', '', {
-    httpOnly: true,
+  const serializer = serialize('token', 'bye', {
+    httpOnly: false,
     sameSite: 'strict',
     path: '/',
     maxAge: 1,
