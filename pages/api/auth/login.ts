@@ -46,6 +46,15 @@ export default async function handler(
     return;
   }
 
+  if (!user.verified) {
+    res.status(200).json({
+      username: user.username,
+      password: isUser,
+      verified: user.verified,
+    } as any);
+    return;
+  }
+
   const token = await createToken(user.username);
   const serializer = serialize('token', token, {
     httpOnly: false,

@@ -52,6 +52,15 @@ const SignInForm = () => {
 
         return;
       }
+      if (!response.data.verified) {
+        setError('username', {
+          type: 'custom',
+          message: 'Check your e-mail box',
+        });
+        setButtonText('Login.');
+
+        return;
+      }
       setButtonText('Logged in.');
       store.dispatch(login({ isLogin: true, username: username }));
       Router.push('/home');
