@@ -20,24 +20,17 @@ function MyApp({ Component, pageProps }: AppProps) {
       )) as AxiosResponse;
 
       const { isLogged: isLogin, username } = response.data;
-      if (isLogin) {
-        let isDark;
-        const isDarkCookie = document.cookie.split(';');
+      let isDark;
+      const isDarkCookie = document.cookie.split(';');
 
-        isDarkCookie.forEach((x) => {
-          if (x.includes('isDark')) {
-            isDark = x.split('=')[1];
-          }
-        });
+      isDarkCookie.forEach((x) => {
+        if (x.includes('isDark')) {
+          isDark = x.split('=')[1];
+        }
+      });
 
-        if (isDark === 'true') {
-          store.dispatch(setdark());
-        }
-      } else {
-        const isDark = document.cookie.split('=')[1];
-        if (isDark === 'true') {
-          store.dispatch(setdark());
-        }
+      if (isDark === 'true') {
+        store.dispatch(setdark());
       }
 
       store.dispatch(login({ isLogin, username }));
