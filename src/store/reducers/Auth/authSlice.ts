@@ -19,6 +19,8 @@ export const authSlice = createSlice({
       state.username = action.payload.username;
     },
     logout: (state) => {
+      document.cookie =
+        'token= ; path=/;';
       state.isLogin = false;
       state.username = '';
     },
