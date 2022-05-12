@@ -21,7 +21,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       const { isLogged: isLogin, username } = response.data;
       if (isLogin) {
-        const isDark = document.cookie.split(';')[1]?.split('=')[1];
+        let isDark;
+        const isDarkCookie = document.cookie.split(';');
+
+        isDarkCookie.forEach((x) => {
+          if (x.includes('isDark')) {
+            isDark = x.split('=')[1];
+          }
+        });
+
         if (isDark === 'true') {
           store.dispatch(setdark());
         }
