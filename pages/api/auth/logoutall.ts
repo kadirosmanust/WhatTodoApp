@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { serialize } from 'cookie';
 import { MongoClient } from 'mongodb';
 
 type Data = {
@@ -20,16 +19,9 @@ export default async function handler(
   const db = client.db(process.env.MONGO_DB_DATABASENAME);
   const tokenCollection = db.collection('Tokens');
 
-  const userTokens = (await tokenCollection.findOne({
+  const response = (await tokenCollection.deleteOne({
     username: username,
   })) as any;
 
-  const updatedTokens = userTokens.tokens.filter((x: any) => x.token !== token);
-
-  await tokenCollection.updateOne(
-    { username: username },
-    { $set: { tokens: updatedTokens } }
-  );
-
-  res.status(200).json({ message: 'Success!' } as any);
+  res.status(200).json({ message: response } as any);
 }

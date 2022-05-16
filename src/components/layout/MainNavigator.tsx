@@ -3,15 +3,17 @@ import Router from 'next/router';
 import { LogoutIcon, UserIcon } from '@heroicons/react/solid';
 
 import { logout } from '@/store/reducers/Auth/authSlice';
-import store from '@/store/store';
-import { httpGet } from '@/utils/helpers/httpHelper';
+import store, { useAppSelector } from '@/store/store';
+import { httpPost } from '@/utils/helpers/httpHelper';
 import DarkThemeToggle from '../DarkThemeToggle/DarkThemeToggle';
 
 import styles from './MainNavigator.module.css';
 
 const MainNavigator = () => {
-  const logOutClickHandler = () => {
-    //httpGet('/api/auth/logout');
+  const { isLogin, username } = useAppSelector((state) => state.auth);
+
+  const logOutClickHandler = async () => {
+    await httpPost('/api/auth/logout', username);
 
     store.dispatch(logout());
     Router.push('/');

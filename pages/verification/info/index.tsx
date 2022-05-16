@@ -20,7 +20,8 @@ const Verification = () => {
       {!isLogin && (
         <div className='center'>
           <p className={styles.paragraph}>
-            Please, Check your email adress. And verify your e-mail
+            Please, Check your email adress. And verify your e-mail. Note: Check
+            Spam Folder either.
           </p>
           <Link href={'/home'}>
             <a className={styles.btn}>Home</a>

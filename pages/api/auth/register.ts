@@ -64,8 +64,12 @@ export default async function handler(
     await mailHelper.sendMail({
       to: email,
       subject: 'Please confirm your Email account',
-      html: `Please verifie your account ${username}: 
-      <a href='https://what-todo-app.vercel.app/verification/${authuuID}'>Click Here</a>
+      html: `
+      Hello ${username}
+      You registered an account on WhatTodo App, before being able to use your account you need to verify that this is your email address by clicking here:<a href='https://what-todo-app.vercel.app/verification/${authuuID}'>Click Here</a>
+      
+      Kind Regards, WhatTodo App: 
+      
       `,
     });
 

@@ -9,7 +9,6 @@ export const createToken = async (username: string) => {
     .setIssuedAt()
     .setExpirationTime('7w')
     .sign(new TextEncoder().encode(SECRET_KEY));
-
   return token;
 };
 

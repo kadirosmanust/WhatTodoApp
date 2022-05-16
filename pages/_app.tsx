@@ -19,10 +19,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         '/api/auth/checkuserindex'
       )) as AxiosResponse;
 
-      const { isLogged: isLogin, username } = response.data;
+      const { isLogged: isLogin, username, token } = response.data;
       let isDark;
       const isDarkCookie = document.cookie.split(';');
-
+      if (!token) {
+        document.cookie = 'token= ; path=/; Max-Age=-99999999;';
+      }
       isDarkCookie.forEach((x) => {
         if (x.includes('isDark')) {
           isDark = x.split('=')[1];

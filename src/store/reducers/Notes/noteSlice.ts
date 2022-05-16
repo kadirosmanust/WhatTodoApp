@@ -34,7 +34,7 @@ export const createNote: any = createAsyncThunk(
   'notes/createNote',
   async (note: Note, thunkAPI) => {
     const response = (await axios.post(
-      'https://what-todo-app.vercel.app//api/utils/new-note',
+      `${process.env.BASE_PATH}/api/utils/new-note`,
       note
     )) as AxiosResponse;
 
@@ -47,7 +47,7 @@ export const deleteNote: any = createAsyncThunk(
   'notes/deleteNote',
   async (note: Note, thunkAPI) => {
     const response = (await axios.post(
-      'https://what-todo-app.vercel.app//api/utils/delete-note',
+      `${process.env.BASE_PATH}/api/utils/delete-note`,
       note
     )) as AxiosResponse;
     const payload = { status: response.status, note };
@@ -59,7 +59,7 @@ export const updateNotes: any = createAsyncThunk(
   'notes/updateNotes',
   async (note: Note, thunkAPI) => {
     const response = (await axios.post(
-      'https://what-todo-app.vercel.app//api/utils/update-note',
+      `${process.env.BASE_PATH}/api/utils/update-note`,
       note
     )) as AxiosResponse;
     const payload = { status: response.status, note };

@@ -5,6 +5,9 @@
   flex-direction: column;
   height: 100vh;
 }
+.important {
+  font-weight: 600;
+}
 .toggle {
   position: absolute;
   top: 2rem;
@@ -33,6 +36,10 @@
 }
 .link {
   border-bottom: 1px solid black;
+  transition: all 0.2s ease-in-out;
+}
+.link:hover {
+  color: var(--spinner-color);
 }
 .btn {
   margin-top: 1em;
