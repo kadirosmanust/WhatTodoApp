@@ -18,7 +18,7 @@
   padding-right: 0.9rem;
   background-color: var(--signinbtn-color);
   transition: all 0.2s ease-in-out;
-  color: var(--buttontext-color);
+  color: var(--background-color);
   cursor: pointer;
   margin-left: 1em;
 }
@@ -52,4 +52,5 @@
   border-radius: 15px;
   box-shadow: 0px 0px 12px 3px rgba(8, 8, 8, 0.2);
   z-index: 11;
+  color: var(--ptext-color);
 }
